@@ -102,3 +102,20 @@ dist
 
 # TernJS port file
 .tern-port
+android/.gradle
+android/.idea
+android/app/.cxx
+android/app/debug
+android/.DS_Store
+android/app/.DS_Store
+android/app/build
+android/app/my-upload-key.keystore
+android/app/debug.keystore
+android/app/release
+android/app/src/.DS_Store
+android/app/src/cpp/.DS_Store
+android/libuv/build
+.DS_Store
+android/libuv/libuv-1.23.1/build
+java_pid65262.hprof
+app-release.aab
