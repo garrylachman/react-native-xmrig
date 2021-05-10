@@ -115,6 +115,7 @@ android/app/release
 android/app/src/.DS_Store
 android/app/src/cpp/.DS_Store
 android/libuv/build
+android/build
 .DS_Store
 android/libuv/libuv-1.23.1/build
 java_pid65262.hprof
