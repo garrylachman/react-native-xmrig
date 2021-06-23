@@ -1,7 +1,6 @@
 # react-native-xmrig
-React Native App that uses optimized version of XMRig to run on mobile. Using MoneroOcean auto switching algo to mine the most profit coin.
-
-The App displays stats from the miner process & pull personal stats from MoneroOcean pool.
+React Native App that uses an optimized version of XMRig to run on mobile. Using MoneroOcean auto-switching algo to mine the most profitable coin.
+The App displays stats from the miner process & pulls personal stats from MoneroOcean pool.
 
 ## Features:
 * Benchmark different coins & algos to create personal most profit algos to mine
