@@ -1,9 +1,12 @@
 import React, { useCallback, useMemo, useContext } from 'react';
-import { StyleSheet } from 'react-native';
+import { NativeModules, StyleSheet } from 'react-native';
 import { Text, Button, ListItem, ListItemProps, List, Divider } from '@ui-kitten/components';
 import {  SettingsActionType, ISettingsWallet } from '../../../../core/settings';
 import { SettingsCard, SettingsCardProps } from './../settings.card';
 import { DialogContext, DialogType, IDialogContext } from '../../../dialogs/dialog.provider';
+
+const { XMRigModule } = NativeModules;
+
 
 type UseButtonProps = ListItemProps & {
     wallet: string
@@ -21,6 +24,7 @@ export const HistoryCard:React.FC<SettingsCardProps> = (props:SettingsCardProps)
                     timestamp: new Date().toLocaleString()
                 }
             })
+            XMRigModule.UpdateLastWalletAddress(wallet);
         }
     }, []);
 

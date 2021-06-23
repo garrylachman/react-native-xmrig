@@ -1,7 +1,7 @@
 import { Card, Text } from '@ui-kitten/components';
 import React from 'react';
 import {View, StyleSheet, ViewProps } from 'react-native';
-import { IMinerSummary } from '../../../core/use-miner-httpd-hook';
+import { IMinerSummary } from '../../../../core/hooks';
 
 type OtherViewProps = ViewProps & {
     minerData: IMinerSummary | null;
@@ -18,7 +18,7 @@ export const OtherView = (props: OtherViewProps):React.ReactElement<OtherViewPro
                 </Card>
                 <Card style={[styles.rowCard, {flex: 2}]}>
                     <Text category='label'>Arch</Text>
-                    <Text style={styles.cardValue}>{props.minerData?.cpu.arch}</Text>
+                    <Text adjustsFontSizeToFit numberOfLines={1}>{props.minerData?.cpu.arch}</Text>
                 </Card>
             </View>
             

@@ -1,10 +1,13 @@
 import React, { useState, useCallback, useMemo, useEffect, useContext } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { NativeModules, StyleSheet, View } from 'react-native';
 import { Text, Input, Icon, IconProps, Button } from '@ui-kitten/components';
 import { SettingsActionType } from '../../../../core/settings';
 import { SettingsCard, SettingsCardProps } from './../settings.card';
 import { EvaStatus } from '@ui-kitten/components/devsupport';
 import { DialogContext, DialogType, IDialogContext } from '../../../dialogs/dialog.provider';
+
+const { XMRigModule } = NativeModules;
+
 
 const validateWalletAddress = (addr?:string):boolean => addr != null && /[48][0-9AB][1-9A-HJ-NP-Za-km-z]{93}/.test(addr);
 
@@ -47,6 +50,7 @@ export const WalletCard:React.FC<SettingsCardProps> = (props:SettingsCardProps) 
                     timestamp: new Date().toLocaleString()
                 }
             })
+            XMRigModule.UpdateLastWalletAddress(wallet);
         }
     }, []);
 

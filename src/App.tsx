@@ -8,51 +8,30 @@ import { SettingsActionType } from './core/settings/settings.actions';
 import { DialogContextProvider } from './components/dialogs/dialog.provider';
 import { AppNavigator, AppHeader } from './components';
 import SplashScreen from 'react-native-splash-screen';
+import { SessionDataContextProvider } from './core/session-data/session-data.context';
 
 const { XMRigModule } = NativeModules;
 
+import { enableScreens } from 'react-native-screens';
 
-const HomeScreen = () => {
+enableScreens(false);
 
-  const [settingsState, settingsDispatcher] = useContext(SettingsContext);
-
-  useEffect(()=>{
-    SplashScreen.hide();
-  }, []);
-  
-  return (
-    <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text category='h1'>HOME</Text>
-      <Button
-        onPress={() => {
-          settingsDispatcher({
-            type: SettingsActionType.SET_WALLET,
-            value: {
-              address: '123',
-              timestamp: '123'
-            }
-          });
-          //XMRigModule.start('4AfypY3D9SygW8q843KXDG6dzjPY38X3sJQxug84tGyfBNWbKS6dTPD6qtER2cdtXz2GccHyA8cpSiRzFUSpN1Fm3nnaJtS');
-        }}
-      >Start</Button>
-    </Layout>
-  );
-};
-
-const app = () => (
+const App = () => (
   <>
     <IconRegistry icons={EvaIconsPack} />
     <ApplicationProvider {...eva} theme={eva.light}>
       <SettingsContextProvider>
-        <DialogContextProvider>
-          <SafeAreaView style={{ flex: 1 }}>
-            <AppHeader />
-            <AppNavigator />
-          </SafeAreaView>
-        </DialogContextProvider>
+        <SessionDataContextProvider>
+          <DialogContextProvider>
+            <SafeAreaView style={{ flex: 1 }}>
+              <AppHeader />
+              <AppNavigator />
+            </SafeAreaView>
+          </DialogContextProvider>
+        </SessionDataContextProvider>
       </SettingsContextProvider>
     </ApplicationProvider>
   </>
 );
 
-export default app;
+export default App;

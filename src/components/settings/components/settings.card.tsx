@@ -1,8 +1,7 @@
-import React, { useMemo, useRef, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, ViewProps, View } from 'react-native';
 import { Text, Card, CardProps, Icon, IconProps } from '@ui-kitten/components';
 import { ISettings, ISettingsReducerAction } from '../../../core/settings';
-import { IconAnimation } from '@ui-kitten/components/ui/icon/iconAnimation';
 
 export type SettingsCardProps = CardProps & {
     settings: ISettings;
@@ -19,13 +18,13 @@ type SettingsCardHeaderProps = ViewProps & {
 };
 
 const CardHeader = (props:SettingsCardHeaderProps):React.ReactElement<SettingsCardHeaderProps> => {
-    const iconRef = useRef<IconProps>();
+    const iconRef = React.useRef<IconProps>();
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (props.isMutted) { iconRef.current.startAnimation() }
     }, [props.isMutted])
 
-    return useMemo( () => (
+    return React.useMemo( () => (
         <View {...props} style={[styles.cardHeader, ...[props.isMutted ? styles.cardHeaderMutted : {}]]}>
             <Text category={props.isMutted ? 's1' : 'h6'} appearance={props.isMutted ? 'hint' : 'default'}>{props.text}</Text>
             <Icon name={props.icon} fill='#8F9BB3' style={styles.icon} animation='zoom' ref={iconRef} />
@@ -33,7 +32,7 @@ const CardHeader = (props:SettingsCardHeaderProps):React.ReactElement<SettingsCa
    
 };
 
-export const SettingsCard:React.FC<SettingsCardProps> = (props:SettingsCardProps) => useMemo( () => (
+export const SettingsCard:React.FC<SettingsCardProps> = (props:SettingsCardProps) => React.useMemo( () => (
     <Card {...props} style={[styles.card, props.style]} header={headerProps => CardHeader({...headerProps, text: props.title, icon: props.icon, isMutted: !props.showContent})}>
         {props.showContent && props.children}
         {!props.showContent && <Text category='c1'>Click to show content</Text>}

@@ -1,6 +1,6 @@
 {
   "name": "reactnativexmrig",
-  "version": "0.0.1",
+  "version": "1.0.6",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -14,6 +14,7 @@
     "@react-native-async-storage/async-storage": "^1.15.4",
     "@react-native-community/art": "^1.2.0",
     "@react-native-community/viewpager": "^5.0.11",
+    "@react-navigation/bottom-tabs": "^5.11.11",
     "@react-navigation/material-top-tabs": "^5.3.15",
     "@react-navigation/native": "^5.9.4",
     "@types/d3-shape": "^2.0.0",
@@ -22,11 +23,13 @@
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-pager-view": "^5.1.5",
-    "react-native-sparkline": "https://github.com/garrylachman/react-native-sparkline",
+    "react-native-safe-area-context": "^3.2.0",
+    "react-native-screens": "^3.4.0",
     "react-native-splash-screen": "^3.2.0",
     "react-native-svg": "^12.1.1",
     "react-native-svg-charts": "https://github.com/garrylachman/react-native-svg-charts.git#dev",
-    "react-native-tab-view": "^3.0.1"
+    "react-native-tab-view": "^3.0.1",
+    "victory-native": "^35.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

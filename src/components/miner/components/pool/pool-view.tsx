@@ -1,16 +1,16 @@
 import { Card, Text } from '@ui-kitten/components';
 import React from 'react';
 import {View, StyleSheet, ViewProps, LayoutChangeEvent} from 'react-native';
-import Sparkline from 'react-native-sparkline';
-import { IMinerSummary } from '../../../core/use-miner-httpd-hook';
-import { IPoolSummary } from '../../../core/use-pool-hook';
-import { formatHashrate, IMOPoolStats, IXMRigStats } from '../../miner-view';
+import { IMinerSummary } from '../../../../core/hooks/use-miner-httpd.hook';
+import { IPoolSummary } from '../../../../core/hooks/use-pool.hook';
+import { formatHashrate } from '../../../../core/utils/formatters';
+import { VictoryArea } from "victory-native";
 
 type PoolViewProps = ViewProps & {
     minerData: IMinerSummary | null;
-    poolRawHashrateHistory: { history: number[]};
-    poolPayoutHashrateHistory: { history: number[] };
-    poolData: IPoolSummary
+    poolRawHashrateHistory: number[];
+    poolPayoutHashrateHistory: number[];
+    poolData: IPoolSummary | null
     fullWidth: number;
 
 }
@@ -24,18 +24,16 @@ export const PoolView = (props: PoolViewProps):React.ReactElement<PoolViewProps>
                 <Card style={[styles.rowCard, {flex: 1, marginRight: 10}]}>
                     <Text category='label'>Raw Hashrate</Text>
                     <Text category='h4' style={{paddingBottom: 5}}>{formatHashrate(props.poolData?.hash)[0]} <Text category='s2'>{formatHashrate(props.poolData?.hash)[1]}/s</Text></Text>
-                    <Sparkline height={50} width={props.fullWidth*0.48} padding={0} data={props.poolRawHashrateHistory.history} style={{left: -25}}>
-                        <Sparkline.Line color='#8641F4' strokeWidth={2} />
-                        <Sparkline.Band color='rgba(134, 65, 244)' opacity={0.1} />
-                    </Sparkline>
+                    <View style={{left: -25, bottom: -20}}>
+                        <VictoryArea width={props.fullWidth*0.48}  padding={0} height={70} data={props.poolRawHashrateHistory} style={{data: { fill: 'rgba(134, 65, 244)'}}} interpolation="natural" standalone={true} />
+                    </View>
                 </Card>
                 <Card style={[styles.rowCard, {flex: 1}]} >
                     <Text category='label'>Pay Hashrate</Text>
                     <Text category='h4' style={{paddingBottom: 5}}>{formatHashrate(props.poolData?.hash2)[0]} <Text category='s2'>{formatHashrate(props.poolData?.hash2)[1]}/s</Text></Text>
-                    <Sparkline height={50} width={props.fullWidth*0.48} padding={0} data={props.poolPayoutHashrateHistory.history} style={{left: -25}}>
-                        <Sparkline.Line color='#8641F4' strokeWidth={2} />
-                        <Sparkline.Band color='rgba(134, 65, 244)' opacity={0.1} />
-                    </Sparkline>
+                    <View style={{left: -25, bottom: -20}}>
+                        <VictoryArea width={props.fullWidth*0.48}  padding={0} height={70} data={props.poolPayoutHashrateHistory} style={{data: { fill: 'rgba(134, 65, 244)'}}} interpolation="natural" standalone={true} />
+                    </View>
                 </Card>
             </View>
             <View style={styles.row}>

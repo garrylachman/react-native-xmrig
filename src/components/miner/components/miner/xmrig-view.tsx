@@ -1,24 +1,24 @@
 import { Card, Text } from '@ui-kitten/components';
 import React from 'react';
 import {View, StyleSheet, ViewProps} from 'react-native';
-import Sparkline from 'react-native-sparkline';
-import { IMinerSummary } from '../../../core/use-miner-httpd-hook';
-import { formatHashrate } from '../../miner-view';
+import { IMinerSummary } from '../../../../core/hooks';
+import { formatHashrate } from '../../../../core/utils/formatters';
+import { VictoryArea } from "victory-native";
+
 
 type PoolViewProps = ViewProps & {
-    hashrateHistory: { history: number[]};
+    hashrateHistory: number[];
     fullWidth: number;
     minerData: IMinerSummary | null;
     workingState: string;
 }
 
 export const XMRigView = (props: PoolViewProps):React.ReactElement<PoolViewProps> => {
-
-    const RenderHashrateChart = () => (
-        <Sparkline height={50} width={props.fullWidth} padding={0} data={props.hashrateHistory.history} style={{left: -25}}>
-            <Sparkline.Line color='#8641F4' strokeWidth={2} />
-            <Sparkline.Band color='rgba(134, 65, 244)' opacity={0.1} />
-        </Sparkline>
+  
+    const RenderHashrateChartVictory = () => (
+        <View style={{left: -25, bottom: -20}}>
+          <VictoryArea  width={props.fullWidth}  padding={0} height={70} data={props.hashrateHistory} style={{data: { fill: 'rgba(134, 65, 244)'}}} interpolation="natural" standalone={true} />
+        </View>
     )
 
 
@@ -55,7 +55,7 @@ export const XMRigView = (props: PoolViewProps):React.ReactElement<PoolViewProps
                             <Text style={styles.hashrateBadge}>{formatHashrate(props.minerData?.hashrate.highest)[1]}/s (max)</Text>
                         </View>
                     </View>
-                    <RenderHashrateChart />
+                    <RenderHashrateChartVictory />
                 </Card>
             </View>
             <View style={styles.row}>

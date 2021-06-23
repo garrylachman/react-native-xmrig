@@ -10,6 +10,7 @@
 "amtDue":21612276416
 "txnCount":4}*/
 import React, { useState, useEffect } from 'react';
+import { InteractionManager } from 'react-native';
 
 export interface IPoolSummary {
     hash: number;
@@ -40,8 +41,9 @@ export const usePool = (wallet?:string) => {
 
     useEffect(() => {
         const intervalID = setInterval(() => {
-            if (wallet) {
-                getDataApi(wallet)
+            InteractionManager.runAfterInteractions(() => {
+                if (wallet) {
+                    getDataApi(wallet)
                     .then(value => {
                         if (value) {
                             setData({
@@ -54,10 +56,11 @@ export const usePool = (wallet?:string) => {
                     })
                     .catch((error) => {
                     })
-            }
+                }
+            });
         }, 10*1000);
         return () => clearInterval(intervalID)
-    }, [])
+    }, [wallet])
 
     return data;
 }

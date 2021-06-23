@@ -1,16 +1,16 @@
-import React, { useState, useContext, useCallback, useMemo, useEffect } from 'react';
-import {  StyleSheet, ViewProps, View, Keyboard } from 'react-native';
-import { Layout, Text, Icon, IconProps, Button, Modal, Divider } from '@ui-kitten/components';
+import React from 'react';
+import { StyleSheet, ViewProps, View } from 'react-native';
+import { Layout, Divider } from '@ui-kitten/components';
 import { SettingsContext, SettingsStateDispatch } from '../../core/settings';
-import { WalletCard, HistoryCard } from './components'
+import { WalletCard, HistoryCard, BootloaderCard } from './components'
 
 
 export const SettingsView:React.FC<ViewProps> = () => {
 
-    const [settings, settingsDispatcher]:SettingsStateDispatch = useContext(SettingsContext);
-    const [showWalletCardContent, setShowWalletCardContent] = useState<boolean>(true);
+    const [settings, settingsDispatcher]:SettingsStateDispatch = React.useContext(SettingsContext);
+    const [showWalletCardContent, setShowWalletCardContent] = React.useState<boolean>(true);
 
-    return useMemo( () => (
+    return React.useMemo( () => (
         <Layout style={styles.layout} level='2'>
             <View style={styles.cards}>
                 <WalletCard 
@@ -35,6 +35,7 @@ export const SettingsView:React.FC<ViewProps> = () => {
     ), [settings, showWalletCardContent])
 }
 
+
 const styles = StyleSheet.create({
     layout: {
         flex: 1,
@@ -46,3 +47,5 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     }
 });
+
+export default SettingsView;
