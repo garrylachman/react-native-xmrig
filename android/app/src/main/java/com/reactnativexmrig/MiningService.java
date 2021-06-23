@@ -1,6 +1,10 @@
 package com.reactnativexmrig;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +13,14 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.facebook.soloader.SoLoader;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,18 +43,26 @@ enum MinnerState  {
 
 public class MiningService extends Service {
 
+    public static class StdoutEvent {
+        public String value;
+
+        StdoutEvent(String _value) {
+            this.value = _value;
+        }
+
+    }
+
+
     private static final String LOG_TAG = "MiningSvc";
-    private final String[] XMRigABIs = {"arm64-v8a", "armeabi-v7a", "x86", "x86_64"};
+    private static final String NOTIFICATION_CHANNEL_ID = "com.reactnativexmrig.service";
+    private static final String NOTIFICATION_CHANNEL_NAME = "React Native XMRIG Service";
+    private static final int NOTIFICATION_ID = 200;
+    private Notification.Builder notificationbuilder;
     private Process process;
     private String configTemplate;
     private String privatePath;
     private String workerId;
     private OutputReaderThread outputHandler;
-    private OutputReaderThread errorHandler;
-
-    private List<String> stdout = new ArrayList<String>();
-
-
 
     @Override
     public void onCreate() {
@@ -62,16 +77,31 @@ public class MiningService extends Service {
         workerId = fetchOrCreateWorkerId();
         Log.w(LOG_TAG, "my workerId: " + workerId);
 
-    }
+        Intent notificationIntent = new Intent(this, MiningService.class);
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
-    private String getABI() {
+        notificationbuilder =
+                new Notification.Builder(this, NOTIFICATION_CHANNEL_ID)
+                        .setContentTitle("React Native XMRig")
+                        .setContentText("React Native XMRig Service")
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentIntent(pendingIntent)
+                        .setTicker("React Native XMRig Service")
+                        .setOngoing(true)
+                        .setOnlyAlertOnce(true);
 
-        for (String supportedAbi : Build.SUPPORTED_ABIS) {
-            if (Arrays.stream(this.XMRigABIs).anyMatch(supportedAbi::equalsIgnoreCase)) {
-                return  supportedAbi;
-            }
-        }
-        return null;
+        NotificationManager notificationManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID,
+                NOTIFICATION_CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_DEFAULT);
+        notificationManager.createNotificationChannel(channel);
+
+        notificationManager.notify(NOTIFICATION_ID, notificationbuilder.build());
+
+        // Notification ID cannot be 0.
+        this.startForeground(NOTIFICATION_ID, notificationbuilder.build());
+
     }
 
 
@@ -110,16 +140,37 @@ public class MiningService extends Service {
     }
 
     @Override
+    public IBinder onBind(Intent intent) {
+        // Return the interface
+        return binder;
+    }
+
+    private final IMiningService.Stub binder = new IMiningService.Stub() {
+        @Override
+        public void startMiner(String wallet, boolean forceNew) {
+            MiningConfig cfg = newConfig(
+                    wallet,
+                    true);
+            startMining(cfg, forceNew);
+        }
+
+        @Override
+        public void stopMiner() {
+            stopMining();
+        }
+    };
+
+    @Override
     public void onDestroy() {
         stopMining();
         super.onDestroy();
     }
 
-    @Override
+    /*@Override
     public IBinder onBind(Intent intent) {
         return new MiningServiceBinder();
     }
-
+*/
     public void stopMining() {
         if (outputHandler != null) {
             outputHandler.interrupt();
@@ -161,8 +212,7 @@ public class MiningService extends Service {
             // in our directory
             //pb.directory(new File(getApplicationContext().getFilesDir().getAbsolutePath()+"/../lib/"));
             // in case of errors, read them
-            pb.redirectErrorStream();
-
+            pb.redirectErrorStream(true);
 
 
             // run it!
@@ -170,9 +220,6 @@ public class MiningService extends Service {
             // start processing xmrig's output
             outputHandler = new MiningService.OutputReaderThread(process.getInputStream());
             outputHandler.start();
-
-            errorHandler = new MiningService.OutputReaderThread(process.getErrorStream());
-            errorHandler.start();
 
             Toast.makeText(this, "started", Toast.LENGTH_SHORT).show();
 
@@ -186,20 +233,15 @@ public class MiningService extends Service {
     }
 
 
-    public String getOutput() {
-        if (outputHandler != null && outputHandler.getOutput() != null)
-            return outputHandler.getOutput().toString();
-        else return "";
-    }
-
-    public String[] getStdout() {
-        String[] ret = stdout.toArray(new String[0]);
-        stdout.clear();
-        return ret;
-    }
-
     public int getAvailableCores() {
         return Runtime.getRuntime().availableProcessors()/2;
+    }
+
+    public void updateNotification(String str) {
+        notificationbuilder.setContentText(str);
+
+        NotificationManager notificationManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(NOTIFICATION_ID, notificationbuilder.build());
     }
 
     /**
@@ -208,7 +250,6 @@ public class MiningService extends Service {
     private class OutputReaderThread extends Thread {
 
         private InputStream inputStream;
-        private StringBuilder output = new StringBuilder();
         private BufferedReader reader;
 
         OutputReaderThread(InputStream inputStream) {
@@ -220,8 +261,8 @@ public class MiningService extends Service {
                 reader = new BufferedReader(new InputStreamReader(inputStream));
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    output.append(line + System.lineSeparator());
-                    stdout.add(line);
+                    updateNotification(line);
+                    EventBus.getDefault().post(new StdoutEvent(line));
 
                     Log.d(LOG_TAG, line);
 
@@ -231,10 +272,5 @@ public class MiningService extends Service {
                 Log.w(LOG_TAG, "exception", e);
             }
         }
-
-        public StringBuilder getOutput() {
-            return output;
-        }
-
     }
 }

@@ -23,62 +23,68 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import androidx.core.app.NotificationCompat;
+
 public class XMRigModule extends ReactContextBaseJavaModule {
     private MiningService.MiningServiceBinder binder;
     private ScheduledExecutorService svc;
     private String walletAddr;
     private Context context;
+    IMiningService iMiningService;
 
     XMRigModule(ReactApplicationContext context) {
         super(context);
         this.context = context;
         Intent intent = new Intent(context, MiningService.class);
         context.bindService(intent, serverConnection, context.BIND_AUTO_CREATE);
-        context.startService(intent);
-    }
 
-    private void startMining(String wallet, boolean forceNew) {
-        Log.d("XMRigModule", "isBinder: " + Boolean.toString(binder == null));
-        this.walletAddr = wallet;
-        if (binder == null) return;
-        MiningService.MiningConfig cfg = binder.getService().newConfig(
-                wallet,
-                true);
-        binder.getService().startMining(cfg, forceNew);
-
-        svc = Executors.newSingleThreadScheduledExecutor();
-        svc.scheduleWithFixedDelay(this::updateLog, 1, 10, TimeUnit.SECONDS);
+        context.startForegroundService(intent);
 
     }
 
-    private void updateLog() {
+    @Override
+    public void initialize() {
+        super.initialize();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onCatalystInstanceDestroy() {
+        super.onCatalystInstanceDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.ASYNC)
+    public void onMessageEvent(MiningService.StdoutEvent event) {
         WritableMap payload = Arguments.createMap();
-        payload.putArray("log", Arguments.fromArray(binder.getService().getStdout()));
+        String[] strArr = {event.value};
+        payload.putArray("log", Arguments.fromArray(strArr));
 
         getReactApplicationContext()
                 .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                 .emit("onLog", payload);
-    }
-
-
-    private void stopMining() {
-        binder.getService().stopMining();
-    }
-
+    };
 
     @Override
     public String getName() {
@@ -88,33 +94,46 @@ public class XMRigModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void start(String wallet) {
         Log.d("XMRigModule", "Create event called with wallet: " + wallet);
-        this.startMining(wallet, false);
+        //this.startMining(wallet, false);
+        try {
+            iMiningService.startMiner(wallet, false);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @ReactMethod
     public void rebench(String wallet) {
-        this.stopMining();
+        this.stop();
         Log.d("XMRigModule", "Create event called with wallet: " + wallet);
-        this.startMining(wallet, true);
+        try {
+            iMiningService.startMiner(wallet, true);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @ReactMethod
     public void stop() {
         Log.d("XMRigModule", "Create event stop");
-        this.stopMining();
+        try {
+            iMiningService.stopMiner();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     private ServiceConnection serverConnection = new ServiceConnection() {
         @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            Log.d("XMRigModule", "onServiceConnected");
-            binder = (MiningService.MiningServiceBinder) iBinder;
-
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            // Following the example above for an AIDL interface,
+            // this gets an instance of the IRemoteInterface, which we can use to call on the service
+            iMiningService = IMiningService.Stub.asInterface(service);
         }
 
         @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-            binder = null;
+        public void onServiceDisconnected(ComponentName className) {
+            iMiningService = null;
         }
     };
 }

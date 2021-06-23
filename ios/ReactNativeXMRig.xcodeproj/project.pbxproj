@@ -14,6 +14,7 @@
 		2949477905EBD6B851A3A173 /* libPods-ReactNativeXMRig-ReactNativeXMRigTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23645C795E30985ECD25ECF5 /* libPods-ReactNativeXMRig-ReactNativeXMRigTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		EFDE445BE6058EFC37736680 /* libPods-ReactNativeXMRig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 894542EF843BE653674FFF8E /* libPods-ReactNativeXMRig.a */; };
+		AE39CD68C1584B0D84AADF89 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0C8EBDF765433EAE8A04CB /* libRNSVG.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		9B8A27DBF735B2AE864BA0F8 /* Pods-ReactNativeXMRig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeXMRig.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeXMRig/Pods-ReactNativeXMRig.release.xcconfig"; sourceTree = "<group>"; };
 		9D3B90644E2AC1B992BCD1A8 /* Pods-ReactNativeXMRig-ReactNativeXMRigTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeXMRig-ReactNativeXMRigTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeXMRig-ReactNativeXMRigTests/Pods-ReactNativeXMRig-ReactNativeXMRigTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		E4791229B0134E85A179FF52 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; name = "RNSVG.xcodeproj"; path = "../node_modules/react-native-svg/apple/RNSVG.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		FE0C8EBDF765433EAE8A04CB /* libRNSVG.a */ = {isa = PBXFileReference; name = "libRNSVG.a"; path = "libRNSVG.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFDE445BE6058EFC37736680 /* libPods-ReactNativeXMRig.a in Frameworks */,
+				AE39CD68C1584B0D84AADF89 /* libRNSVG.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +125,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E4791229B0134E85A179FF52 /* RNSVG.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -451,6 +456,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactNativeXMRig.app/ReactNativeXMRig";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-svg/apple/**",
+				);
 			};
 			name = Debug;
 		};
@@ -475,6 +488,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactNativeXMRig.app/ReactNativeXMRig";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-svg/apple/**",
+				);
 			};
 			name = Release;
 		};
@@ -501,6 +522,10 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-svg/apple/**",
+				);
 			};
 			name = Debug;
 		};
@@ -525,6 +550,10 @@
 				PRODUCT_NAME = ReactNativeXMRig;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-svg/apple/**",
+				);
 			};
 			name = Release;
 		};

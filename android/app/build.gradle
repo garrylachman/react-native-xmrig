@@ -248,6 +248,8 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation project(':react-native-splash-screen')
+    implementation 'org.greenrobot:eventbus:3.2.0'
+
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
