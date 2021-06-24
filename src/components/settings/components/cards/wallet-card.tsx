@@ -50,7 +50,6 @@ export const WalletCard:React.FC<SettingsCardProps> = (props:SettingsCardProps) 
                     timestamp: new Date().toLocaleString()
                 }
             })
-            XMRigModule.UpdateLastWalletAddress(wallet);
         }
     }, []);
 

@@ -24,7 +24,6 @@ export const HistoryCard:React.FC<SettingsCardProps> = (props:SettingsCardProps)
                     timestamp: new Date().toLocaleString()
                 }
             })
-            XMRigModule.UpdateLastWalletAddress(wallet);
         }
     }, []);
 
