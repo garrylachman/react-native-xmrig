@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native';
 import { SessionDataContext } from '../../../core/session-data/session-data.context';
 import { Text } from '@ui-kitten/components';
 import { StartMode } from '../../../core/session-data/session-data.interface';
@@ -8,11 +8,11 @@ import { PoolView } from '../components/pool/pool-view';
 const PoolScreen = () => {
     
     const {minerData, poolPayoutHashrateHistoryRef, poolRawHashrateHistoryRef, working, poolData} = React.useContext(SessionDataContext);
-    const [sparklineWidth] = React.useState<number>(0);
+    const [sparklineWidth, setSparklineWidth] = React.useState<number>(0);
 
     return (
         <ScrollView nestedScrollEnabled={true} style={working == StartMode.STOP ? [styles.layout, styles.hidden] : styles.layout}>
-            <View style={styles.section}>
+            <View style={styles.section} onLayout={(event:LayoutChangeEvent) => setSparklineWidth(event.nativeEvent.layout.width)}>
                 <Text category='h5' style={styles.sectionTitle}>Pool Statistics</Text>
                 <Text category='label' style={styles.sectionSubTitle}>MoneroOcean</Text>
             </View>

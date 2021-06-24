@@ -25,14 +25,14 @@ export const PoolView = (props: PoolViewProps):React.ReactElement<PoolViewProps>
                     <Text category='label'>Raw Hashrate</Text>
                     <Text category='h4' style={{paddingBottom: 5}}>{formatHashrate(props.poolData?.hash)[0]} <Text category='s2'>{formatHashrate(props.poolData?.hash)[1]}/s</Text></Text>
                     <View style={{left: -25, bottom: -20}}>
-                        <VictoryArea width={props.fullWidth*0.48}  padding={0} height={70} data={props.poolRawHashrateHistory} style={{data: { fill: 'rgba(134, 65, 244)'}}} interpolation="natural" standalone={true} />
+                        <VictoryArea samples={25} width={props.fullWidth*0.48} padding={0} height={70} data={props.poolRawHashrateHistory} style={{data: { fill: 'rgba(134, 65, 244)'}}} interpolation="natural" standalone={true} />
                     </View>
                 </Card>
                 <Card style={[styles.rowCard, {flex: 1}]} >
                     <Text category='label'>Pay Hashrate</Text>
                     <Text category='h4' style={{paddingBottom: 5}}>{formatHashrate(props.poolData?.hash2)[0]} <Text category='s2'>{formatHashrate(props.poolData?.hash2)[1]}/s</Text></Text>
                     <View style={{left: -25, bottom: -20}}>
-                        <VictoryArea width={props.fullWidth*0.48}  padding={0} height={70} data={props.poolPayoutHashrateHistory} style={{data: { fill: 'rgba(134, 65, 244)'}}} interpolation="natural" standalone={true} />
+                        <VictoryArea samples={25} width={props.fullWidth*0.48}  padding={0} height={70} data={props.poolPayoutHashrateHistory} style={{data: { fill: 'rgba(134, 65, 244)'}}} interpolation="natural" standalone={true} />
                     </View>
                 </Card>
             </View>
