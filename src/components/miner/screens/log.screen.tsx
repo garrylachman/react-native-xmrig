@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     hidden: {
-        opacity: 0.3
+        opacity: 1
     },
     section: {
         flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10, paddingTop: 0
