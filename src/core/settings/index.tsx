@@ -11,8 +11,12 @@ export {
     SettingsActionType
 } from './settings.actions';
 
+export {
+    ThemeModes
+} from './settings.interface'
+
 export type {
     ISettingsReducerAction,
     ISettings,
-    ISettingsWallet
+    ISettingsWallet,
 } from './settings.interface';

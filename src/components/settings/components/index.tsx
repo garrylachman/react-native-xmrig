@@ -1,5 +1,7 @@
 export { 
     WalletCard, 
     HistoryCard,
-    BootloaderCard
+    BootloaderCard,
+    ThemeCard,
+    ThemeModeCard
 } from './cards'

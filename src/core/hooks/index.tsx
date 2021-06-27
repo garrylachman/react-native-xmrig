@@ -17,3 +17,7 @@ export {
 export type {
     IPoolSummary
 } from './use-pool.hook';
+
+export {
+    useInterval
+} from './use-interval.hook'

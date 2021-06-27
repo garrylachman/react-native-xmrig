@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewProps } from 'react-native';
+import { ViewProps, View} from 'react-native';
 import { TabNavigator } from './miner-navigator';
 import { MinerControl } from './components/miner-control.component'
 

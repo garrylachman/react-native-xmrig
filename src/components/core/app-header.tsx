@@ -1,14 +1,17 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text } from '@ui-kitten/components';
+import { Layout, Text } from '@ui-kitten/components';
+import Shimmer from 'react-native-shimmer';
 
 
 export const AppHeader = () => {
 
     return (
-        <View style={style.container}>
-            <Text category='h1' adjustsFontSizeToFit numberOfLines={1}>React Native XMRig</Text>
-        </View>
+        <Layout style={style.container} level="4">
+            <Shimmer pauseDuration={10*1000}>
+                <Text category='h1' adjustsFontSizeToFit numberOfLines={1}>React Native XMRig</Text>
+            </Shimmer>
+        </Layout>
     );
 }
 

@@ -7,7 +7,7 @@ export type SettingsCardProps = CardProps & {
     settings: ISettings;
     settingsDispatcher: React.Dispatch<ISettingsReducerAction>;
     title: string;
-    showContent: boolean;
+    showContent?: boolean;
     icon: string;
 };
 
@@ -17,26 +17,26 @@ type SettingsCardHeaderProps = ViewProps & {
     isMutted: boolean;
 };
 
-const CardHeader = (props:SettingsCardHeaderProps):React.ReactElement<SettingsCardHeaderProps> => {
+const CardHeader = ({isMutted, icon, ...props}:SettingsCardHeaderProps):React.ReactElement<SettingsCardHeaderProps> => {
     const iconRef = React.useRef<IconProps>();
 
     React.useEffect(() => {
-        if (props.isMutted) { iconRef.current.startAnimation() }
-    }, [props.isMutted])
+        if (isMutted) { iconRef.current.startAnimation() }
+    }, [isMutted])
 
     return React.useMemo( () => (
-        <View {...props} style={[styles.cardHeader, ...[props.isMutted ? styles.cardHeaderMutted : {}]]}>
-            <Text category={props.isMutted ? 's1' : 'h6'} appearance={props.isMutted ? 'hint' : 'default'}>{props.text}</Text>
-            <Icon name={props.icon} fill='#8F9BB3' style={styles.icon} animation='zoom' ref={iconRef} />
-        </View>), [props.isMutted]);
+        <View {...props} style={[styles.cardHeader, ...[isMutted ? styles.cardHeaderMutted : {}]]}>
+            <Text category={isMutted ? 's1' : 'h6'} appearance={isMutted ? 'hint' : 'default'}>{props.text}</Text>
+            <Icon name={icon} fill='#8F9BB3' style={styles.icon} animation='zoom' ref={iconRef} />
+        </View>), [isMutted]);
    
 };
 
-export const SettingsCard:React.FC<SettingsCardProps> = (props:SettingsCardProps) => React.useMemo( () => (
-    <Card {...props} style={[styles.card, props.style]} header={headerProps => CardHeader({...headerProps, text: props.title, icon: props.icon, isMutted: !props.showContent})}>
-        {props.showContent && props.children}
-        {!props.showContent && <Text category='c1'>Click to show content</Text>}
-    </Card>), [props]);
+export const SettingsCard:React.FC<SettingsCardProps> = ({title, icon, style, children, showContent=true, ...props}) => React.useMemo( () => (
+    <Card {...props} style={[styles.card, style]} header={headerProps => CardHeader({...headerProps, text: title, icon: icon, isMutted: !showContent})}>
+        {showContent && children}
+        {!showContent && <Text category='c1'>Click to show content</Text>}
+    </Card>), [title, icon, style, children, showContent,props]);
 
 const styles = StyleSheet.create({
     card: {

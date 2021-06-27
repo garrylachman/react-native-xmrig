@@ -1,11 +1,14 @@
 import React from 'react';
 import { Layout, Spinner, Text } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
+import Shimmer from 'react-native-shimmer';
 
 export const SpinnerLayout = () => (
     <Layout style={styles.spinnerContainer} level='2'>
         <Spinner status='success' size='giant'/>
-        <Text category="h3">Loading</Text>
+        <Shimmer>      
+            <Text category="h3">Loading</Text>
+        </Shimmer>
     </Layout>
 )
 

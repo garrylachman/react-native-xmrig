@@ -4,7 +4,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const SettingsStorageInit = async (initalState:ISettings):Promise<ISettings> => {
     try {
         const jsonValue:string | null = await AsyncStorage.getItem('settings');
-        console.log('JSON.parse', JSON.parse(jsonValue));
         if (jsonValue)  {
             return {
                 ...initalState, 
@@ -18,7 +17,6 @@ export const SettingsStorageInit = async (initalState:ISettings):Promise<ISettin
 }
 
 export const SettingsStorageSave = (settings:ISettings) => {
-  console.log("save to db", settings)
   try {
     const jsonValue:string = JSON.stringify(settings);
     AsyncStorage.setItem('settings', jsonValue)

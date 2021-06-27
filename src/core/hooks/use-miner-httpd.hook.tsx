@@ -73,6 +73,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { InteractionManager } from 'react-native';
+import { useInterval } from './use-interval.hook';
 
 export interface IMinerSummary {
     id: string;
@@ -165,26 +166,20 @@ export const useMinerHttpd = (port:number) => {
     const [minerStatus, setMinerStatus] = useState<boolean>(false);
     const [minerData, setMinerData] = useState<IMinerSummary | null>(null);
 
-    useEffect(() => {
-        const intervalID = setInterval(() => {
-            InteractionManager.runAfterInteractions(() => {
-            getDataApi(port)
-                .then(value => {
-                    if (value) {
-                        setMinerData(value)
-                        setMinerStatus(true);
-                    } else {
-                        setMinerStatus(false);
-                    }
-                })
-                .catch((error) => {
+    useInterval(() => 
+        getDataApi(port)
+            .then(value => {
+                if (value) {
+                    setMinerData(value)
+                    setMinerStatus(true);
+                } else {
                     setMinerStatus(false);
                 }
-            )
-            });
-        }, 10*1000);
-        return () => clearInterval(intervalID)
-    }, [])
+            })
+            .catch((error) => {
+                setMinerStatus(false);
+            }
+    ), 10*1000);
 
     return {
         minerStatus,

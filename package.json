@@ -1,6 +1,6 @@
 {
   "name": "reactnativexmrig",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -25,6 +25,7 @@
     "react-native-pager-view": "^5.1.5",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",
+    "react-native-shimmer": "^0.6.0",
     "react-native-splash-screen": "^3.2.0",
     "react-native-svg": "^12.1.1",
     "react-native-svg-charts": "https://github.com/garrylachman/react-native-svg-charts.git#dev",

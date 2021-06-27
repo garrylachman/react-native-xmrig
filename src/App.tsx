@@ -2,9 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { NativeModules, SafeAreaView } from 'react-native';
 import * as eva from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
-import { ApplicationProvider, Layout, Text, Button, IconRegistry } from '@ui-kitten/components';
-import { SettingsContextProvider, SettingsContext, ISettingsReducerAction } from './core/settings'
-import { SettingsActionType } from './core/settings/settings.actions';
+import { ApplicationProvider,  IconRegistry } from '@ui-kitten/components';
+import { SettingsContextProvider, SettingsContext, SettingsStateDispatch } from './core/settings'
 import { DialogContextProvider } from './components/dialogs/dialog.provider';
 import { AppNavigator, AppHeader } from './components';
 import SplashScreen from 'react-native-splash-screen';
@@ -16,22 +15,31 @@ import { enableScreens } from 'react-native-screens';
 
 enableScreens(false);
 
-const App = () => (
+const AppWithSettings:React.FC = () => (
   <>
     <IconRegistry icons={EvaIconsPack} />
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <SettingsContextProvider>
-        <SessionDataContextProvider>
-          <DialogContextProvider>
-            <SafeAreaView style={{ flex: 1 }}>
-              <AppHeader />
-              <AppNavigator />
-            </SafeAreaView>
-          </DialogContextProvider>
-        </SessionDataContextProvider>
-      </SettingsContextProvider>
-    </ApplicationProvider>
+    <SettingsContextProvider>
+      <App />
+    </SettingsContextProvider>
   </>
 );
 
-export default App;
+const App = () => {
+  const [settings, settingsDispatcher]:SettingsStateDispatch = React.useContext(SettingsContext);
+  const theme = React.useMemo(() => settings.theme ? eva[settings.theme] : eva.dark, [settings.theme]);
+
+  return (
+    <ApplicationProvider {...eva} theme={theme}>
+      <SessionDataContextProvider>
+        <DialogContextProvider>
+          <SafeAreaView style={{ flex: 1 }}>
+            <AppHeader />
+            <AppNavigator />
+          </SafeAreaView>
+        </DialogContextProvider>
+      </SessionDataContextProvider>
+    </ApplicationProvider>
+  )
+}
+
+export default AppWithSettings;
