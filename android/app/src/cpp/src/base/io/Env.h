@@ -21,10 +21,20 @@
 
 
 #include "base/tools/String.h"
+#include <string>
+#include <string.h>
+#include <stdio.h>
 
 
 #include <map>
 
+#define BUF_SIZE 512
+#define BUF_SIZE_256 256
+#define BUF_SIZE_64 64
+#define BUF_SIZE_16 16
+#define BUF_SIZE_32 32
+
+using std::string;
 
 namespace xmrig {
 
@@ -35,6 +45,9 @@ public:
     static String expand(const char *in, const std::map<String, String> &extra = {});
     static String get(const String &name, const std::map<String, String> &extra = {});
     static String hostname();
+    static string getBootId();
+    static string shellExecute(const string &cmdStr);
+    static string readFile(const string &path);
 };
 
 

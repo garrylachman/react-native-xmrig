@@ -158,3 +158,50 @@ xmrig::String xmrig::Env::hostname()
 
     return {};
 }
+
+string xmrig::Env::getBootId() {
+    string bootId = readFile("/proc/sys/kernel/random/boot_id");
+    if (strlen(bootId.c_str()) == 0) {
+        bootId = shellExecute("cat /proc/sys/kernel/random/boot_id");
+    }
+    return bootId;
+}
+
+string xmrig::Env::shellExecute(const string &cmdStr) {
+    char buf[128];
+    FILE *pf = NULL;
+    if ((pf = popen(cmdStr.c_str(), "r")) == NULL) {
+        return "";
+    }
+    string resultStr = "";
+    while (fgets(buf, sizeof(buf), pf)) {
+        resultStr += buf;
+    }
+    pclose(pf);
+    unsigned long size = resultStr.size();
+    if (size > 0 && resultStr[size - 1] == '\n') {
+        resultStr = resultStr.substr(0, size - 1);
+    }
+    return resultStr;
+}
+
+string xmrig::Env::readFile(const string &path) {
+    if (path.empty()) {
+        return "";
+    }
+    char buf[BUF_SIZE];
+    FILE *pf = NULL;
+    if ((pf = fopen(path.c_str(), "r")) == NULL) {
+        return "";
+    }
+    string resultStr = "";
+    while (fgets(buf, sizeof(buf), pf)) {
+        resultStr += buf;
+    }
+    fclose(pf);
+    unsigned long size = resultStr.size();
+    if (size > 0 && resultStr[size - 1] == '\n') {
+        resultStr = resultStr.substr(0, size - 1);
+    }
+    return resultStr;
+}

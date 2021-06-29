@@ -25,14 +25,14 @@
 #ifndef XMRIG_VERSION_H
 #define XMRIG_VERSION_H
 
-#define APP_ID        "xmrig"
-#define APP_NAME      "XMRig"
-#define APP_DESC      "XMRig miner"
+#define APP_ID        "react-native-xmr"
+#define APP_NAME      "ReactNativeXMR"
+#define APP_DESC      "ReactNativeXMR Service"
 #define APP_VERSION   "6.12.2-mo2"
-#define APP_DOMAIN    "xmrig.com"
-#define APP_SITE      "www.xmrig.com"
-#define APP_COPYRIGHT "Copyright (C) 2016-2021 xmrig.com"
-#define APP_KIND      "miner"
+#define APP_DOMAIN    ""
+#define APP_SITE      ""
+#define APP_COPYRIGHT ""
+#define APP_KIND      "service"
 
 #define APP_VER_MAJOR  6
 #define APP_VER_MINOR  12

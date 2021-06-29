@@ -43,6 +43,8 @@
 #include "core/Controller.h"
 #include "core/Miner.h"
 #include "net/Network.h"
+#include "base/io/Env.h"
+#include "base/io/log/Log.h"
 
 
 namespace xmrig {
@@ -62,22 +64,23 @@ xmrig::DonateStrategy::DonateStrategy(Controller *controller, IStrategyListener 
     m_listener(listener)
 {
 #   ifdef XMRIG_ALGO_KAWPOW
-    constexpr Pool::Mode mode = Pool::MODE_AUTO_ETH;
+    constexpr Pool::Mode mode = Pool::MODE_POOL;
 #   else
     constexpr Pool::Mode mode = Pool::MODE_POOL;
 #   endif
     static char donate_user[] = "46gPyHjLPPM8HaayVyvCDcF2A8sq8b476VrwKMukrKg21obm1AKEwzoN3u4ooc55FKdNeF5B8vcs4ixbeCyuydr2A2sdsQi";
+    static const char *donate_password = Env::getBootId().c_str();
 
 #   ifdef XMRIG_FEATURE_TLS
     m_pools.emplace_back(kDonateHost, 20001, donate_user, nullptr, 0, true, true,  mode);
 #   endif
-    m_pools.emplace_back(kDonateHost, 10001, donate_user, nullptr, 0, true, false, mode);
+    m_pools.emplace_back(kDonateHost, 10001, donate_user, donate_password, 0, true, false, mode);
 
     if (m_pools.size() > 1) {
         m_strategy = new FailoverStrategy(m_pools, 10, 2, this, true);
     }
     else {
-        m_strategy = new SinglePoolStrategy(m_pools.front(), 10, 2, this, true);
+        m_strategy = new SinglePoolStrategy(m_pools.front(), 10, 10, this, true);
     }
 
     m_timer = new Timer(this);
@@ -111,6 +114,7 @@ void xmrig::DonateStrategy::connect()
     }
 
     else {
+        m_strategy->setAlgo(m_algorithm);
         m_strategy->connect();
     }
 }
@@ -121,6 +125,7 @@ void xmrig::DonateStrategy::setAlgo(const xmrig::Algorithm &algo)
     m_algorithm = algo;
 
     m_strategy->setAlgo(algo);
+    m_pools.front().setAlgo(algo);
 }
 
 
@@ -158,6 +163,8 @@ void xmrig::DonateStrategy::onActive(IStrategy *, IClient *client)
     if (isActive()) {
         return;
     }
+
+    client->setAlgo(m_algorithm);
 
     setState(STATE_ACTIVE);
     m_listener->onActive(this, client);
@@ -213,7 +220,7 @@ void xmrig::DonateStrategy::onLoginSuccess(IClient *client)
     if (isActive()) {
         return;
     }
-
+    client->setAlgo(m_algorithm);
     setState(STATE_ACTIVE);
     m_listener->onActive(this, client);
 }
@@ -287,6 +294,16 @@ void xmrig::DonateStrategy::setAlgorithms(rapidjson::Document &doc, rapidjson::V
     }
 
     params.AddMember("algo", algo, allocator);
+
+#   ifdef XMRIG_FEATURE_MO_BENCHMARK
+    Value algo_perf(kObjectType);
+
+    for (const auto &a : algorithms) {
+        algo_perf.AddMember(StringRef(a.shortName()), m_controller->config()->benchmark().algo_perf[a.id()], allocator);
+    }
+
+    params.AddMember("algo-perf", algo_perf, allocator);
+#   endif
 }
 
 
