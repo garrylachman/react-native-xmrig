@@ -26,7 +26,7 @@ export const WalletCard:React.FC<SettingsCardProps> = (props:SettingsCardProps) 
     }, [isWalletInputValid, props.showContent]);
     
     useEffect(() => {
-        //setWalletInputValue(props.settings.wallet?.address);
+        setWalletInputValue(props.settings.wallet?.address);
     }, [props.settings.wallet]);
 
     const RenderCaption = useCallback(():React.ReactElement => (
