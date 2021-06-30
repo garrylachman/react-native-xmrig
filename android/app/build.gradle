@@ -166,8 +166,8 @@ android {
         applicationId "com.reactnativexmrig"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 9
-        versionName "1.0.9"
+        versionCode 10
+        versionName "1.0.10"
         externalNativeBuild {
             cmake {
                 arguments "-DUV_INCLUDE_DIR=app/src/cpp/include"

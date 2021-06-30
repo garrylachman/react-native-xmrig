@@ -19,4 +19,5 @@ export type {
     ISettingsReducerAction,
     ISettings,
     ISettingsWallet,
+    ThemeType
 } from './settings.interface';

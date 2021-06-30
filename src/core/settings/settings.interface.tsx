@@ -27,3 +27,5 @@ export interface ISettingsContext {
     state: ISettings;
     dispatch: Dispatch<ISettingsReducerAction>
 }
+
+export type ThemeType = "dark" | "light";
