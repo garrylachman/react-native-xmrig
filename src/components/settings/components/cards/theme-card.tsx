@@ -2,15 +2,15 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Icon, IconProps, IndexPath, Layout, Select, SelectItem, Text } from '@ui-kitten/components';
 import { SettingsCard, SettingsCardProps } from '../settings.card';
-import { SettingsActionType } from '../../../../core/settings';
+import { SettingsActionType, Themes } from '../../../../core/settings';
 
 const ForwardIcon = (props:IconProps) => (
     <Icon {...props} name='arrow-ios-forward'/>
   );
 
 const themes:string[] = [
-    'light',
-    'dark'
+    Themes.LIGHT,
+    Themes.DARK
 ]
 
 export const ThemeCard:React.FC<SettingsCardProps> = ({settings, settingsDispatcher,  ...props}) => {

@@ -6,6 +6,11 @@ export enum ThemeModes {
     SIMPLE_YOUNG = "Simple Young"
 }
 
+export enum Themes {
+    LIGHT = "light",
+    DARK = "dark"
+}
+
 export interface ISettingsWallet {
     address: string;
     timestamp: string;
@@ -14,7 +19,7 @@ export interface ISettingsWallet {
 export interface ISettings {
     wallet: ISettingsWallet | null;
     wallet_history: ISettingsWallet[];
-    theme: string | null,
+    theme: Themes,
     theme_mode: ThemeModes
 }
 
@@ -28,4 +33,4 @@ export interface ISettingsContext {
     dispatch: Dispatch<ISettingsReducerAction>
 }
 
-export type ThemeType = "dark" | "light";
+export type ThemeType = Themes.LIGHT | Themes.DARK;

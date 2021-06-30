@@ -1,6 +1,6 @@
 import { Reducer } from 'react';
 import { SettingsActionType } from './settings.actions';
-import { ISettings, ISettingsReducerAction, ISettingsWallet, ThemeModes } from './settings.interface';
+import { ISettings, ISettingsReducerAction, ISettingsWallet, ThemeModes, ThemeType } from './settings.interface';
 
 export const SettingsReducer:Reducer<ISettings, ISettingsReducerAction> = (prevState: ISettings, action: ISettingsReducerAction) => {
     console.log("reducer", action);
@@ -17,7 +17,7 @@ export const SettingsReducer:Reducer<ISettings, ISettingsReducerAction> = (prevS
         case SettingsActionType.SET_THEME:
             return {
                 ...prevState,
-                theme: action.value as "light" | "dark"
+                theme: action.value as ThemeType
             };
         case SettingsActionType.SET_THEME_MODE:
             return {

@@ -12,7 +12,8 @@ export {
 } from './settings.actions';
 
 export {
-    ThemeModes
+    ThemeModes,
+    Themes
 } from './settings.interface'
 
 export type {

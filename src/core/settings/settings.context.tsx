@@ -1,13 +1,13 @@
 import React, { createContext, Context, useReducer, Dispatch, useEffect, useState, EffectCallback } from "react";
 import { SettingsActionType } from "./settings.actions";
-import { ISettings, ISettingsReducerAction, ThemeModes } from "./settings.interface";
+import { ISettings, ISettingsReducerAction, ThemeModes, Themes } from "./settings.interface";
 import { SettingsReducer } from "./settings.reducer";
 import { SettingsStorageInit, SettingsStorageSave } from "./settings.storage";
 
 const initialState: ISettings = {
     wallet: null,
     wallet_history: [],
-    theme: null,
+    theme: Themes.DARK,
     theme_mode: ThemeModes.ADVANCED
 };
 
