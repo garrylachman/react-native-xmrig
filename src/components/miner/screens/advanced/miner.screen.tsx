@@ -1,7 +1,7 @@
 import React from 'react';
 import { LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native';
 import { SessionDataContext } from '../../../../core/session-data/session-data.context';
-import { Layout, Text } from '@ui-kitten/components';
+import { Layout, Text, Spinner } from '@ui-kitten/components';
 import { XMRigView } from '../../components/miner/xmrig-view';
 import { StartMode } from '../../../../core/session-data/session-data.interface';
 
@@ -17,6 +17,12 @@ const MinerScreen = () => {
                     <Text category='h5' style={styles.sectionTitle}>Miner Statistics</Text>
                     <Text category='label' style={styles.sectionSubTitle}>XMRig</Text>
                 </View>
+                {workingState == "Benchmarking" && 
+                    <>
+                        <Spinner status='warning'/>
+                        <Text status="warning">Benchmarking... The data will be available after benchmarking complete.</Text>
+                    </>
+                }
                 <XMRigView workingState={workingState} fullWidth={sparklineWidth} minerData={minerData} hashrateHistory={hashrateHistoryRef} />
             </ScrollView>
         </Layout>

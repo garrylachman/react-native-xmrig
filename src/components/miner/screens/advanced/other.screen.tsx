@@ -1,13 +1,13 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { SessionDataContext } from '../../../../core/session-data/session-data.context';
-import { Layout, Text } from '@ui-kitten/components';
+import { Layout, Text, Spinner } from '@ui-kitten/components';
 import { StartMode } from '../../../../core/session-data/session-data.interface';
 import { OtherView } from '../../components/other/other-view';
 
 const OtherScreen = () => {
     
-    const {working, minerData} = React.useContext(SessionDataContext);
+    const {workingState, working, minerData} = React.useContext(SessionDataContext);
 
     return (
         <Layout level="2">
@@ -16,6 +16,12 @@ const OtherScreen = () => {
                     <Text category='h5' style={styles.sectionTitle}>Other</Text>
                     <Text category='label' style={styles.sectionSubTitle}>Technical</Text>
                 </View>
+                {workingState == "Benchmarking" && 
+                    <>
+                        <Spinner status='warning'/>
+                        <Text status="warning">Benchmarking... The data will be available after benchmarking complete.</Text>
+                    </>
+                }
                 <OtherView minerData={minerData} />
             </ScrollView>
         </Layout>
