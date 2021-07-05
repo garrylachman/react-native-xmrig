@@ -14,4 +14,4 @@ The App displays stats from the miner process & pulls personal stats from Monero
 https://play.google.com/store/apps/details?id=com.reactnativexmrig
 
 ## Screenshots
-![](https://i.imgur.com/VsKfTMT.png)
+![](https://raw.githubusercontent.com/garrylachman/react-native-xmrig/main/assets/github-promo-img.png)
