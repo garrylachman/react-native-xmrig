@@ -7,7 +7,7 @@ The App displays stats from the miner process & pulls personal stats from Monero
 * Miner tab stats: Miner state, Algo, Hashrate histogram, Hashrate (last 10sec, last 60sec, last 15min & max hashrate), Accepted shares, Current Difficult, Avg time for share, Threads, Free mem, Res. mem.
 * Pool tab stats: Raw hashrate histogram, Payout hashrate histogram, Num of shares, Total Hashes, Total due balance, Total paid, Number of transcations.
 * Log tab: Real Time miner output (stdout) log.
-* Other tab: CPU Brand, Arch, AES, AVX2, 64Bit, MSR, Backend & Assembly.
+* Other tab: CPU Brand, Arch, AES, AVX2, 64Bit, MSR, Backend, Assembly and Threads list (intensity, affinity, av & thread hashrate)
 * Settings tab: Update wallet address with validation, History of address with option to reuse old address.
 
 ## Play Store
