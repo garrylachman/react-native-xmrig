@@ -7,7 +7,7 @@ LogRocket.init('6pfxkm/react-native-xmrig')
 import * as eva from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider,  IconRegistry } from '@ui-kitten/components';
-import { SettingsContextProvider, SettingsContext, SettingsStateDispatch } from './core/settings'
+import { SettingsContextProvider, SettingsContext, SettingsStateDispatch, ThemeType } from './core/settings'
 import { DialogContextProvider } from './components/dialogs/dialog.provider';
 import { AppNavigator, AppHeader } from './components';
 import SplashScreen from 'react-native-splash-screen';
@@ -18,6 +18,7 @@ const { XMRigModule } = NativeModules;
 import { enableScreens } from 'react-native-screens';
 
 enableScreens(false);
+
 
 const AppWithSettings:React.FC = () => (
   <>
@@ -30,7 +31,7 @@ const AppWithSettings:React.FC = () => (
 
 const App = () => {
   const [settings, settingsDispatcher]:SettingsStateDispatch = React.useContext(SettingsContext);
-  const theme = React.useMemo(() => settings.theme ? eva[settings.theme] : eva.dark, [settings.theme]);
+  const theme = React.useMemo(() => settings.theme ? eva[settings.theme as ThemeType] : eva.dark, [settings.theme]);
 
   return (
     <ApplicationProvider {...eva} theme={theme}>

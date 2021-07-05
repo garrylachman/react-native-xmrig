@@ -1,8 +1,9 @@
 import React from "react";
-import { IMinerSummary, useMinerHttpd } from "../hooks/use-miner-httpd.hook";
-import { useHashrateHistory } from "../hooks/use-hashrate-history.hook";
+import { IMinerSummary, useMinerHttpd } from "../hooks";
+import { IMinerBackend, useBackendHttpd } from "../hooks";
+import { useHashrateHistory } from "../hooks";
 import { IMinerLog, StartMode, IXMRigLogEvent } from "./session-data.interface";
-import { IPoolSummary, usePool } from "../hooks/use-pool.hook";
+import { IPoolSummary, usePool } from "../hooks";
 import { SettingsContext, SettingsStateDispatch } from "../settings";
 import { NativeModules, NativeEventEmitter } from "react-native";
 import { parseLogLine } from "../utils/parsers";
@@ -19,11 +20,12 @@ type SessionDataContextType = {
   workingState: string,
   minerData: IMinerSummary | null,
   poolData: IPoolSummary | null,
+  backendsData: IMinerBackend | null,
   setWorking: Function
 }
 
-export const SessionDataContext:React.Context<SessionDataContextType> = React.createContext();
-
+//@ts-ignore
+export const SessionDataContext:React.Context<SessionDataContextType> = React.createContext(); 
 
 export const SessionDataContextProvider:React.FC = ({children}) =>  {
 
@@ -46,6 +48,8 @@ export const SessionDataContextProvider:React.FC = ({children}) =>  {
 
   const { minerStatus, minerData } = useMinerHttpd(50080);
   const poolData = usePool(settings.wallet?.address)
+
+  const { backendsStatus, backendsData } = useBackendHttpd(50080);
 
   React.useEffect(() => {
     if (!isNaN(parseFloat(`${minerData?.hashrate.total[0]}`))) {
@@ -101,7 +105,7 @@ export const SessionDataContextProvider:React.FC = ({children}) =>  {
 }, [])
 
   return (
-    <SessionDataContext.Provider value={{minerLog, hashrateHistoryRef, poolRawHashrateHistoryRef, poolPayoutHashrateHistoryRef, working, workingState, minerData, poolData, setWorking}}>
+    <SessionDataContext.Provider value={{minerLog, hashrateHistoryRef, poolRawHashrateHistoryRef, poolPayoutHashrateHistoryRef, working, workingState, minerData, poolData, backendsData, setWorking}}>
       {children}
     </SessionDataContext.Provider>
   );

@@ -1,6 +1,6 @@
 {
   "name": "reactnativexmrig",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -23,6 +23,7 @@
     "@ui-kitten/eva-icons": "^5.1.0",
     "react": "17.0.1",
     "react-native": "0.64.0",
+    "react-native-awesome-table": "^1.0.4",
     "react-native-pager-view": "^5.1.5",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",

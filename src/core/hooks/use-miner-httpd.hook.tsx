@@ -71,8 +71,7 @@
     "hugepages": [0, 8]
 }*/
 
-import React, { useState, useEffect } from 'react';
-import { InteractionManager } from 'react-native';
+import React from 'react';
 import { useInterval } from './use-interval.hook';
 
 export interface IMinerSummary {
@@ -163,8 +162,8 @@ const getDataApi = (port: number):Promise<IMinerSummary | null> => {
   };
 
 export const useMinerHttpd = (port:number) => {
-    const [minerStatus, setMinerStatus] = useState<boolean>(false);
-    const [minerData, setMinerData] = useState<IMinerSummary | null>(null);
+    const [minerStatus, setMinerStatus] = React.useState<boolean>(false);
+    const [minerData, setMinerData] = React.useState<IMinerSummary | null>(null);
 
     useInterval(() => 
         getDataApi(port)

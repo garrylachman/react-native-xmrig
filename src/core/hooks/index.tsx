@@ -11,6 +11,14 @@ export type {
 } from './use-miner-httpd.hook';
 
 export {
+    useBackendHttpd
+} from './use-backend-httpd.hook';
+
+export type {
+    IMinerBackend
+} from './use-backend-httpd.hook';
+
+export {
     usePool
 } from './use-pool.hook';
 
