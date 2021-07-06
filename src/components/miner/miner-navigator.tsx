@@ -58,6 +58,8 @@ const TabNavigatorFactory = () => {
   return <AdvancedTabNavigator />;
 }
   
-export const TabNavigator = () => (
-  <TabNavigatorFactory />
-)
+export const TabNavigator = () => {
+  return (
+    <TabNavigatorFactory />
+  );
+}

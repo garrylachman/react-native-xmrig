@@ -120,3 +120,4 @@ android/build
 android/libuv/libuv-1.23.1/build
 java_pid65262.hprof
 app-release.aab
+android/app/google-services.json

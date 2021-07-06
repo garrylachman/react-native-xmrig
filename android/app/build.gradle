@@ -1,4 +1,5 @@
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services'
 
 import com.android.build.OutputFile
 
@@ -166,8 +167,8 @@ android {
         applicationId "com.reactnativexmrig"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 13
-        versionName "1.0.13"
+        versionCode 14
+        versionName "1.0.14"
         externalNativeBuild {
             cmake {
                 arguments "-DUV_INCLUDE_DIR=app/src/cpp/include"
@@ -249,6 +250,8 @@ dependencies {
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation project(':react-native-splash-screen')
     implementation 'org.greenrobot:eventbus:3.2.0'
+
+
 
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {

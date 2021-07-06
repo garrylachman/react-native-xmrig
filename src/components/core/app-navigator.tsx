@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { TabBar, Tab, Layout, Icon, IconProps } from '@ui-kitten/components';
 import SplashScreen from 'react-native-splash-screen';
 import { LazyLoader } from './lazy-loader';
+
+import analytics from '@react-native-firebase/analytics';
 
 const Settings = React.lazy(() => import('../settings/settings-view'));
 const Miner = React.lazy(() => import('../miner/miner-view'));
@@ -44,8 +46,31 @@ const TabNavigator = () => {
     );
 };
 
-export const AppNavigator = () => (
-    <NavigationContainer>
-        <TabNavigator/>
-    </NavigationContainer>
-);
+export const AppNavigator = () => {
+
+    const navigationRef = React.useRef<any>();
+    const routeNameRef = React.useRef();
+
+    return (
+        <NavigationContainer 
+            ref={navigationRef}
+            onReady={() =>
+                (routeNameRef.current = navigationRef.current.getCurrentRoute().name)
+            }
+            onStateChange={async () => {
+                const previousRouteName = routeNameRef.current;
+                const currentRouteName = navigationRef.current.getCurrentRoute().name;
+
+                if (previousRouteName !== currentRouteName) {
+                    await analytics().logScreenView({
+                        screen_name: currentRouteName,
+                        screen_class: currentRouteName,
+                    });
+                    }
+                routeNameRef.current = currentRouteName;
+            }}
+        >
+            <TabNavigator/>
+        </NavigationContainer>
+    )
+};
