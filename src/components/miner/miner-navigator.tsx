@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { LazyLoader } from '../core/lazy-loader';
 
 import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { BottomNavigation, BottomNavigationTab } from '@ui-kitten/components';
+import { BottomNavigation, BottomNavigationTab, Icon, IconProps } from '@ui-kitten/components';
 import { SettingsContext, ThemeModes } from '../../core/settings';
 
 const { Navigator, Screen } = createBottomTabNavigator();
@@ -22,21 +22,40 @@ const LazyOtherScreen = () => (<LazyLoader><OtherScreen /></LazyLoader>)
 const SimpleMinerScreen = React.lazy(() => import('./screens/simple-young/simple-miner.screen'));
 const LazySimpleMinerScreen = () => (<LazyLoader><SimpleMinerScreen /></LazyLoader>)
 
+const MinerIcon = (props:IconProps) => (
+  <Icon {...props} name='cube'/>
+);
 
+const PoolIcon = (props:IconProps) => (
+  <Icon {...props} name='activity'/>
+);
 
-const BottomTabBar:React.FC<BottomTabBarProps & { tabs: string[] }> = ({ navigation, state, tabs }) => (
+const LogIcon = (props:IconProps) => (
+  <Icon {...props} name='list'/>
+);
+
+const OtherIcon = (props:IconProps) => (
+  <Icon {...props} name='info'/>
+);
+
+const BottomTabBar:React.FC<BottomTabBarProps & { tabs: {name: string, icon: any}[] }> = ({ navigation, state, tabs }) => (
   <BottomNavigation
     selectedIndex={state.index}
     onSelect={index => navigation.navigate(state.routeNames[index])}>
-      {tabs.map((tabTitle:string, tabIndex:number) => (
-        <BottomNavigationTab title={tabTitle} key={`BottomTabBar-${tabIndex}`}/>
+      {tabs.map((tab:{name: string, icon: any}, tabIndex:number) => (
+        <BottomNavigationTab title={tab.name} icon={tab.icon} key={`BottomTabBar-${tabIndex}`}/>
       ))}
   </BottomNavigation>
 );
   
 const AdvancedTabNavigator = () => (
-  <Navigator tabBar={props => <BottomTabBar {...props} tabs={['MINER', 'POOL', 'LOG', 'OTHER']} />}>
-    <Screen name='Miner' component={LazyMinerScreen}/>
+  <Navigator tabBar={props => <BottomTabBar {...props} tabs={[
+      {name: 'MINER', icon: MinerIcon}, 
+      {name: 'POOL', icon: PoolIcon}, 
+      {name: 'LOG', icon: LogIcon}, 
+      {name: 'OTHER', icon: OtherIcon}
+    ]} />}>
+    <Screen name='Miner' component={LazyMinerScreen} />
     <Screen name='Pool' component={LazyPoolScreen}/>
     <Screen name='Log' component={LazyLogScreen}/>
     <Screen name='Other' component={LazyOtherScreen}/>
@@ -44,7 +63,7 @@ const AdvancedTabNavigator = () => (
 );
 
 const SimpleYoungTabNavigator = () => (
-  <Navigator tabBar={props => <BottomTabBar {...props} tabs={['MINER']} />}>
+  <Navigator tabBar={props => <BottomTabBar {...props} tabs={[{name: 'MINER', icon: MinerIcon}]} />}>
     <Screen name='Miner' component={LazySimpleMinerScreen}/>
   </Navigator>
 );

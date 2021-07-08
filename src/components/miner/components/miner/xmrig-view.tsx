@@ -15,13 +15,13 @@ type PoolViewProps = ViewProps & {
 
 export const XMRigView = (props: PoolViewProps):React.ReactElement<PoolViewProps> => {
   
-    const RenderHashrateChartVictory = () => (
+    const RenderHashrateChartVictory = React.useCallback(() => (
         <View style={{left: -25, bottom: -20, width: props.fullWidth}}>
             <Shimmer opacity={0.8} tilt={30} direction="left" pauseDuration={2500}>
               <VictoryArea  width={props.fullWidth}  padding={0} height={70} data={props.hashrateHistory} style={{data: { fill: 'rgba(134, 65, 244)'}}} interpolation="natural" standalone={true} />
             </Shimmer>
         </View>
-    )
+    ), [props.fullWidth, props.hashrateHistory]);
 
 
     return (
