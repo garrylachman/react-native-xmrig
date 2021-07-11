@@ -3,6 +3,11 @@ import { Layout, Spinner, Text } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import Shimmer from 'react-native-shimmer';
 
+export const Lazy = (componentImportFn:Function) => React.lazy(async () => {
+    let obj = await componentImportFn()
+    return typeof obj.default === 'function' ? obj : obj.default
+})
+
 export const SpinnerLayout = () => (
     <Layout style={styles.spinnerContainer} level='2'>
         <Spinner status='success' size='giant'/>
