@@ -6,9 +6,6 @@ import { SettingsCard, SettingsCardProps } from './../settings.card';
 import { EvaStatus } from '@ui-kitten/components/devsupport';
 import { DialogContext, DialogType, IDialogContext } from '../../../dialogs/dialog.provider';
 
-const { XMRigModule } = NativeModules;
-
-
 const validateWalletAddress = (addr?:string):boolean => addr != null && /[48][0-9AB][1-9A-HJ-NP-Za-km-z]{93}/.test(addr);
 
 const SaveIcon = (props:IconProps):React.ReactElement<IconProps> => (
