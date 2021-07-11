@@ -1,23 +1,28 @@
-import React, { useCallback, useMemo, useContext } from 'react';
-import { NativeModules, StyleSheet } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import { Text, Button, ListItem, ListItemProps, List, Divider } from '@ui-kitten/components';
-import {  SettingsActionType, ISettingsWallet } from '../../../../core/settings';
+import { SettingsActionType, ISettingsWallet } from '../../../../core/settings';
 import { SettingsCard, SettingsCardProps } from './../settings.card';
 import { DialogContext, DialogType, IDialogContext } from '../../../dialogs/dialog.provider';
-
-const { XMRigModule } = NativeModules;
-
 
 type UseButtonProps = ListItemProps & {
     wallet: string
 };
 
-export const HistoryCard:React.FC<SettingsCardProps> = (props:SettingsCardProps) => {
-    const { showDialog } = useContext<IDialogContext>(DialogContext);
+export const HistoryCard:React.FC<SettingsCardProps> = (
+    {
+        settings,
+        settingsDispatcher,
+        title,
+        showContent,
+        icon
+    }
+) => {
+    const { showDialog } = React.useContext<IDialogContext>(DialogContext);
   
-    const handleDialog = useCallback((value: boolean, wallet: string) => {
+    const handleDialog = React.useCallback((value: boolean, wallet: string) => {
         if (value) {
-            props.settingsDispatcher({
+            settingsDispatcher({
                 type: SettingsActionType.SET_WALLET,
                 value: {
                     address: wallet,
@@ -27,9 +32,9 @@ export const HistoryCard:React.FC<SettingsCardProps> = (props:SettingsCardProps)
         }
     }, []);
 
-    const renderItemAccessory = (renderItemProps:UseButtonProps):React.ReactElement<UseButtonProps> => useMemo( () => (
+    const renderItemAccessory = (renderItemProps:UseButtonProps):React.ReactElement<UseButtonProps> => React.useMemo( () => (
         <Button 
-            disabled={props.settings.wallet?.address==renderItemProps.wallet} 
+            disabled={settings.wallet?.address==renderItemProps.wallet} 
             size='tiny' 
             appearance='outline' 
             onPress={() => {
@@ -42,34 +47,34 @@ export const HistoryCard:React.FC<SettingsCardProps> = (props:SettingsCardProps)
                 })
             }}
             >USE</Button>
-    ), [props.settings.wallet]);
+    ), [settings.wallet]);
         
-    const renderItem = useCallback(({ item, index }:{item: ISettingsWallet, index: number}):React.ReactElement => (
+    const renderItem = React.useCallback(({ item, index }:{item: ISettingsWallet, index: number}):React.ReactElement => (
         <ListItem
             style={styles.listItem}
             title={evaProps => <Text {...evaProps} style={{marginLeft: 0}} category='c2'>{item.timestamp}</Text>}
             description={evaProps => <Text {...evaProps} style={{marginLeft: 0, marginRight: 10}} category='c2' appearance='hint'>{item.address}</Text>}
             accessoryRight={accessoryRightProps => renderItemAccessory({...accessoryRightProps, wallet: item.address})}
         />
-    ), [props.settings]);
+    ), [settings]);
 
-    const HistoryList = useCallback( ():React.ReactElement => (
+    const HistoryList = React.useCallback( ():React.ReactElement => (
         <List
-            data={props.settings.wallet_history}
+            data={settings.wallet_history}
             renderItem={renderItem}
             ItemSeparatorComponent={Divider}
         />
-    ), [props.settings]);
+    ), [settings]);
 
-    return useMemo(() => (
+    return React.useMemo(() => (
         <>
-            <SettingsCard {...props} style={styles.card} status='primary'>
+            <SettingsCard {...{settings, settingsDispatcher, title, showContent, icon}} style={styles.card} status='primary'>
                 <Text appearance='hint'>Your wallets history, you can change your current wallet by clicking "use".</Text>
                 <HistoryList />
                 
             </SettingsCard>
         </>
-    ), [props.settings]);
+    ), [settings]);
 }
 
 const styles = StyleSheet.create({
