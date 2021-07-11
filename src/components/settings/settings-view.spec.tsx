@@ -1,0 +1,38 @@
+import React from 'react';
+import { render } from 'react-native-testing-library';
+
+import {
+    light,
+    mapping,
+} from '@eva-design/eva';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+
+import {
+    SettingsView
+} from './settings-view'
+import { View, ViewProps } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+
+describe('@settings-view: component checks', () => {
+
+    const TestSettingsView = (props: Partial<ViewProps>) => (
+        <>
+            <IconRegistry icons={EvaIconsPack} />
+            <ApplicationProvider mapping={mapping} theme={light}>
+                <NavigationContainer>
+                    <SettingsView />
+                </NavigationContainer>
+            </ApplicationProvider>
+        </>
+      );
+
+    it('Snapshot', () => {
+        const tree = render(
+            <TestSettingsView/>,
+        ).toJSON();
+
+        expect(tree).toMatchSnapshot();
+    });
+
+});

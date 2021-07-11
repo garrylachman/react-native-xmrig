@@ -1,0 +1,683 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@theme-mode-card: component checks advanced mode: advanced mode 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#E4E9F2",
+        "borderRadius": 4,
+        "borderWidth": 1,
+        "opacity": 1,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#3366FF",
+          "height": 4,
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 25,
+            "paddingVertical": 8,
+          },
+          Object {},
+        ]
+      }
+      text="title"
+    >
+      <Text
+        appearance="default"
+        category="h6"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 18,
+              "fontWeight": "800",
+            },
+            undefined,
+          ]
+        }
+      >
+        title
+      </Text>
+      <View
+        style={
+          Object {
+            "transform": Array [
+              Object {
+                "scale": 1,
+              },
+            ],
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={25}
+          bbWidth={25}
+          fill="#8F9BB3"
+          focusable={false}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "height": 25,
+                "width": 25,
+              },
+              Object {
+                "flex": 0,
+                "height": 25,
+                "width": 25,
+              },
+            ]
+          }
+          vbHeight={24}
+          vbWidth={24}
+        >
+          <RNSVGGroup
+            fill={4287601587}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGGroup>
+              <RNSVGGroup>
+                <RNSVGRect
+                  height="24"
+                  opacity={0}
+                  width="24"
+                  x={0}
+                  y={0}
+                />
+                <RNSVGPath
+                  d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                />
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+    </View>
+    <View
+      appearance="default"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#EDF1F7",
+            "height": 1,
+          },
+          undefined,
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 24,
+          "paddingVertical": 16,
+        }
+      }
+    >
+      <Text
+        appearance="hint"
+        category="c1"
+        style={
+          Array [
+            Object {
+              "color": "#8F9BB3",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            Object {
+              "paddingBottom": 10,
+            },
+          ]
+        }
+      >
+        There are two User Interface modes: "Advanced" - A full feature elegant UI, the main focus is data over design. "Simple Young" - A Simple fresh UI, the main focus is design over data
+      </Text>
+      <View>
+        <Text
+          appearance="default"
+          category="p1"
+          style={
+            Array [
+              Object {
+                "color": "#222B45",
+                "fontFamily": "System",
+                "fontSize": 15,
+                "fontWeight": "400",
+              },
+              Array [
+                Object {
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#8F9BB3",
+                  "fontFamily": "System",
+                  "fontSize": 12,
+                  "fontWeight": "800",
+                  "marginBottom": 4,
+                },
+              ],
+            ]
+          }
+        >
+          Theme Mode
+        </Text>
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onLayout={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#F7F9FC",
+              "borderColor": "#E4E9F2",
+              "borderRadius": 4,
+              "borderWidth": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "minHeight": 40,
+              "opacity": 1,
+              "paddingHorizontal": 8,
+              "paddingVertical": 7,
+            }
+          }
+        >
+          <Text
+            appearance="default"
+            category="p1"
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Array [
+                Object {
+                  "color": "#222B45",
+                  "fontFamily": "System",
+                  "fontSize": 15,
+                  "fontWeight": "400",
+                },
+                Array [
+                  Object {
+                    "flex": 1,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#8F9BB3",
+                    "fontFamily": "System",
+                    "fontSize": 15,
+                    "fontWeight": "400",
+                    "marginHorizontal": 8,
+                  },
+                  Object {
+                    "color": "#222B45",
+                    "fontFamily": "System",
+                    "fontSize": 15,
+                    "fontWeight": "600",
+                    "marginHorizontal": 8,
+                  },
+                ],
+              ]
+            }
+          >
+            Advanced
+          </Text>
+          <View
+            style={
+              Object {
+                "transform": Array [
+                  Object {
+                    "rotate": "0deg",
+                  },
+                ],
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#8F9BB3"
+              focusable={false}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {
+                    "height": 24,
+                    "marginHorizontal": 8,
+                    "width": 24,
+                  },
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+              vbHeight={24}
+              vbWidth={24}
+            >
+              <RNSVGGroup
+                fill={4287601587}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
+                <RNSVGGroup>
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGSvgView>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`@theme-mode-card: component checks simple young mode: simple young mode 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#E4E9F2",
+        "borderRadius": 4,
+        "borderWidth": 1,
+        "opacity": 1,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#3366FF",
+          "height": 4,
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 25,
+            "paddingVertical": 8,
+          },
+          Object {},
+        ]
+      }
+      text="title"
+    >
+      <Text
+        appearance="default"
+        category="h6"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 18,
+              "fontWeight": "800",
+            },
+            undefined,
+          ]
+        }
+      >
+        title
+      </Text>
+      <View
+        style={
+          Object {
+            "transform": Array [
+              Object {
+                "scale": 1,
+              },
+            ],
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={25}
+          bbWidth={25}
+          fill="#8F9BB3"
+          focusable={false}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "height": 25,
+                "width": 25,
+              },
+              Object {
+                "flex": 0,
+                "height": 25,
+                "width": 25,
+              },
+            ]
+          }
+          vbHeight={24}
+          vbWidth={24}
+        >
+          <RNSVGGroup
+            fill={4287601587}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGGroup>
+              <RNSVGGroup>
+                <RNSVGRect
+                  height="24"
+                  opacity={0}
+                  width="24"
+                  x={0}
+                  y={0}
+                />
+                <RNSVGPath
+                  d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                />
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+    </View>
+    <View
+      appearance="default"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#EDF1F7",
+            "height": 1,
+          },
+          undefined,
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 24,
+          "paddingVertical": 16,
+        }
+      }
+    >
+      <Text
+        appearance="hint"
+        category="c1"
+        style={
+          Array [
+            Object {
+              "color": "#8F9BB3",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            Object {
+              "paddingBottom": 10,
+            },
+          ]
+        }
+      >
+        There are two User Interface modes: "Advanced" - A full feature elegant UI, the main focus is data over design. "Simple Young" - A Simple fresh UI, the main focus is design over data
+      </Text>
+      <View>
+        <Text
+          appearance="default"
+          category="p1"
+          style={
+            Array [
+              Object {
+                "color": "#222B45",
+                "fontFamily": "System",
+                "fontSize": 15,
+                "fontWeight": "400",
+              },
+              Array [
+                Object {
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#8F9BB3",
+                  "fontFamily": "System",
+                  "fontSize": 12,
+                  "fontWeight": "800",
+                  "marginBottom": 4,
+                },
+              ],
+            ]
+          }
+        >
+          Theme Mode
+        </Text>
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onLayout={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#F7F9FC",
+              "borderColor": "#E4E9F2",
+              "borderRadius": 4,
+              "borderWidth": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "minHeight": 40,
+              "opacity": 1,
+              "paddingHorizontal": 8,
+              "paddingVertical": 7,
+            }
+          }
+        >
+          <Text
+            appearance="default"
+            category="p1"
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Array [
+                Object {
+                  "color": "#222B45",
+                  "fontFamily": "System",
+                  "fontSize": 15,
+                  "fontWeight": "400",
+                },
+                Array [
+                  Object {
+                    "flex": 1,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#8F9BB3",
+                    "fontFamily": "System",
+                    "fontSize": 15,
+                    "fontWeight": "400",
+                    "marginHorizontal": 8,
+                  },
+                  Object {
+                    "color": "#222B45",
+                    "fontFamily": "System",
+                    "fontSize": 15,
+                    "fontWeight": "600",
+                    "marginHorizontal": 8,
+                  },
+                ],
+              ]
+            }
+          >
+            Simple Young
+          </Text>
+          <View
+            style={
+              Object {
+                "transform": Array [
+                  Object {
+                    "rotate": "0deg",
+                  },
+                ],
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#8F9BB3"
+              focusable={false}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {
+                    "height": 24,
+                    "marginHorizontal": 8,
+                    "width": 24,
+                  },
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+              vbHeight={24}
+              vbWidth={24}
+            >
+              <RNSVGGroup
+                fill={4287601587}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
+                <RNSVGGroup>
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGSvgView>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

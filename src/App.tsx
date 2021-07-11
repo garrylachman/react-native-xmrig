@@ -1,9 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { NativeModules, SafeAreaView } from 'react-native';
 
-import LogRocket from '@logrocket/react-native';
-LogRocket.init('6pfxkm/react-native-xmrig')
-
 import * as eva from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider,  IconRegistry } from '@ui-kitten/components';

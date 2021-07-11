@@ -1,0 +1,331 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@help-screen: component checks Snapshot 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    appearance="default"
+    level="2"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#F7F9FC",
+        },
+        Object {
+          "flex": 1,
+          "padding": 15,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "flex-start",
+        }
+      }
+    >
+      <Text
+        appearance="default"
+        category="h2"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 32,
+              "fontWeight": "800",
+            },
+            undefined,
+          ]
+        }
+      >
+        Help
+      </Text>
+      <Text
+        appearance="default"
+        category="h5"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 22,
+              "fontWeight": "800",
+            },
+            Object {
+              "paddingVertical": 5,
+            },
+          ]
+        }
+      >
+        How to create a wallet?
+      </Text>
+      <Text
+        appearance="default"
+        category="p1"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 15,
+              "fontWeight": "400",
+            },
+            undefined,
+          ]
+        }
+      >
+        Before you start mining you must have a Monero wallet. You can create a wallet for free using one of the wallet website/applications.
+      </Text>
+      <Text
+        appearance="default"
+        category="h6"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 18,
+              "fontWeight": "800",
+            },
+            Object {
+              "paddingVertical": 5,
+            },
+          ]
+        }
+      >
+        Create wallet using Application
+      </Text>
+      <Text
+        appearance="default"
+        category="p1"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 15,
+              "fontWeight": "400",
+            },
+            undefined,
+          ]
+        }
+      >
+        You can use one of these application from Google Play:
+      </Text>
+      <Text
+        appearance="default"
+        category="c1"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            undefined,
+          ]
+        }
+      >
+        * MyMonero: Send money privately
+      </Text>
+      <Text
+        appearance="default"
+        category="c1"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            undefined,
+          ]
+        }
+      >
+        * Monero Wallet. Buy & Exchange XMR coins
+      </Text>
+      <Text
+        appearance="default"
+        category="c1"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            undefined,
+          ]
+        }
+      >
+        * Cake Wallet
+      </Text>
+      <Text
+        appearance="default"
+        category="c1"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            undefined,
+          ]
+        }
+      >
+        * Exodus: Crypto Bitcoin Wallet
+      </Text>
+      <Text
+        appearance="default"
+        category="c1"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            undefined,
+          ]
+        }
+      >
+        * Edge - Bitcoin, Ethereum, Monero, Ripple Wallet
+      </Text>
+      <Text
+        appearance="default"
+        category="h6"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 18,
+              "fontWeight": "800",
+            },
+            Object {
+              "paddingVertical": 5,
+            },
+          ]
+        }
+      >
+        Create wallet using Website
+      </Text>
+      <Text
+        appearance="default"
+        category="c1"
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "blue",
+            },
+          ]
+        }
+      >
+        * https://wallet.mymonero.com/
+      </Text>
+      <Text
+        appearance="default"
+        category="c1"
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "blue",
+            },
+          ]
+        }
+      >
+        * https://www.xmrwallet.com/
+      </Text>
+      <Text
+        appearance="default"
+        category="c1"
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "blue",
+            },
+          ]
+        }
+      >
+        * https://guarda.co/app/
+      </Text>
+      <Text
+        appearance="default"
+        category="c1"
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "blue",
+            },
+          ]
+        }
+      >
+        * https://app.freewallet.org/
+      </Text>
+      <Text
+        appearance="default"
+        category="c1"
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "blue",
+            },
+          ]
+        }
+      >
+        * https://www.cryptonator.com/about/xmr
+      </Text>
+    </View>
+  </View>
+</View>
+`;

@@ -4,21 +4,27 @@ import { Divider, Layout } from '@ui-kitten/components';
 import { SettingsContext, SettingsStateDispatch } from '../../../core/settings';
 import { HistoryCard, WalletCard } from '../components';
 
-const WalletScreen = () => {
+export type WalletScreenProps = {
+    showWalletCardContent?:boolean
+}
+
+const WalletScreen:React.FC<WalletScreenProps> = ({
+    showWalletCardContent = true
+}) => {
 
     const [settings, settingsDispatcher]:SettingsStateDispatch = React.useContext(SettingsContext);
-    const [showWalletCardContent, setShowWalletCardContent] = React.useState<boolean>(true);
+    const [showWalletCardContentState, setShowWalletCardContentState] = React.useState<boolean>(showWalletCardContent);
 
     return (
         <Layout style={styles.layout} level='2'>
             <View style={styles.cards}>
                 <WalletCard 
-                    showContent={showWalletCardContent} 
+                    showContent={showWalletCardContentState} 
                     title="Wallet"
                     icon="credit-card"
                     settings={settings} 
                     settingsDispatcher={settingsDispatcher}
-                    onPressIn={() => setShowWalletCardContent(true)}
+                    onPressIn={() => setShowWalletCardContentState(true)}
                 />
                 <Divider style={{marginVertical: 10}} />
                 <HistoryCard 
@@ -27,7 +33,7 @@ const WalletScreen = () => {
                     icon="hard-drive"
                     settings={settings} 
                     settingsDispatcher={settingsDispatcher}
-                    onPressIn={() => setShowWalletCardContent(false)}
+                    onPressIn={() => setShowWalletCardContentState(false)}
                 />
             </View>
         </Layout>

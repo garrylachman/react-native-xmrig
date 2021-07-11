@@ -1,32 +1,40 @@
-import React, { useState, useCallback, useMemo, useEffect, useContext } from 'react';
-import { NativeModules, StyleSheet, View } from 'react-native';
+import React from 'react';
+import { ViewProps, StyleSheet, View } from 'react-native';
 import { Text, Input, Icon, IconProps, Button } from '@ui-kitten/components';
 import { SettingsActionType } from '../../../../core/settings';
 import { SettingsCard, SettingsCardProps } from './../settings.card';
 import { EvaStatus } from '@ui-kitten/components/devsupport';
 import { DialogContext, DialogType, IDialogContext } from '../../../dialogs/dialog.provider';
-
-const validateWalletAddress = (addr?:string):boolean => addr != null && /[48][0-9AB][1-9A-HJ-NP-Za-km-z]{93}/.test(addr);
+import { validateWalletAddress } from '../../../../core/utils';
 
 const SaveIcon = (props:IconProps):React.ReactElement<IconProps> => (
     <Icon {...props} name='checkmark-outline'/>
 );
 
-export const WalletCard:React.FC<SettingsCardProps> = (props:SettingsCardProps) => {
-    const { showDialog } = useContext<IDialogContext>(DialogContext);
-    const [walletInputValue, setWalletInputValue] = useState(props.settings.wallet?.address);
-    const isWalletInputValid:boolean = useMemo<boolean>(() => validateWalletAddress(walletInputValue), [walletInputValue]);
-    const cardStatusColor:EvaStatus = useMemo<EvaStatus>(() => {
-        if (!props.showContent) { return 'basic'; }
+export const WalletCard:React.FC<ViewProps & SettingsCardProps> = (
+    {
+        settings,
+        settingsDispatcher,
+        title,
+        showContent,
+        icon,
+        onPressIn
+    }
+) => {
+    const { showDialog } = React.useContext<IDialogContext>(DialogContext);
+    const [walletInputValue, setWalletInputValue] = React.useState(settings.wallet?.address);
+    const isWalletInputValid:boolean = React.useMemo<boolean>(() => validateWalletAddress(walletInputValue), [walletInputValue]);
+    const cardStatusColor:EvaStatus = React.useMemo<EvaStatus>(() => {
+        if (!showContent) { return 'basic'; }
         if (isWalletInputValid) { return 'success'; }
         return 'danger';
-    }, [isWalletInputValid, props.showContent]);
+    }, [isWalletInputValid, showContent]);
     
-    useEffect(() => {
-        setWalletInputValue(props.settings.wallet?.address);
-    }, [props.settings.wallet]);
+    React.useEffect(() => {
+        setWalletInputValue(settings.wallet?.address);
+    }, [settings.wallet]);
 
-    const RenderCaption = useCallback(():React.ReactElement => (
+    const RenderCaption = React.useCallback(():React.ReactElement => (
         <View style={styles.captionContainer}>
             {!isWalletInputValid &&
                 <Text status='danger' category='c1'>Error: XMR address is not valid</Text>
@@ -37,10 +45,9 @@ export const WalletCard:React.FC<SettingsCardProps> = (props:SettingsCardProps) 
         </View>
     ), [isWalletInputValid]);
 
-    const handleDialog = useCallback((value: boolean, wallet:string) => {
+    const handleDialog = React.useCallback((value: boolean, wallet:string) => {
         if (value) {
-            console.log("walletInputValue", wallet)
-            props.settingsDispatcher({
+            settingsDispatcher({
                 type: SettingsActionType.SET_WALLET,
                 value: {
                     address: `${wallet}`,
@@ -50,9 +57,9 @@ export const WalletCard:React.FC<SettingsCardProps> = (props:SettingsCardProps) 
         }
     }, []);
 
-    return useMemo(() => (
+    return React.useMemo(() => (
         <>
-            <SettingsCard {...props} status={cardStatusColor}>
+            <SettingsCard {...{settings, settingsDispatcher, title, showContent, icon, onPressIn}} status={cardStatusColor}>
                 <Input
                     style={styles.input}
                     value={walletInputValue}
@@ -69,7 +76,6 @@ export const WalletCard:React.FC<SettingsCardProps> = (props:SettingsCardProps) 
                     accessoryLeft={SaveIcon} 
                     disabled={!isWalletInputValid}
                     onPress={() => {
-                        console.log("before show", walletInputValue)
                         showDialog({
                             type: DialogType.CONFIRM,
                             title: 'Is Address Correct?',
@@ -81,7 +87,7 @@ export const WalletCard:React.FC<SettingsCardProps> = (props:SettingsCardProps) 
                 >Save</Button>
             </SettingsCard>
         </>
-    ), [props.settings, props.showContent, walletInputValue]);
+    ), [settings, showContent, walletInputValue]);
 }
 
 const styles = StyleSheet.create({

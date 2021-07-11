@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet,ViewProps } from 'react-native';
 import { Text, Button, ListItem, ListItemProps, List, Divider } from '@ui-kitten/components';
 import { SettingsActionType, ISettingsWallet } from '../../../../core/settings';
 import { SettingsCard, SettingsCardProps } from './../settings.card';
@@ -9,13 +9,14 @@ type UseButtonProps = ListItemProps & {
     wallet: string
 };
 
-export const HistoryCard:React.FC<SettingsCardProps> = (
+export const HistoryCard:React.FC<ViewProps & SettingsCardProps> = (
     {
         settings,
         settingsDispatcher,
         title,
         showContent,
-        icon
+        icon,
+        onPressIn
     }
 ) => {
     const { showDialog } = React.useContext<IDialogContext>(DialogContext);
@@ -68,13 +69,13 @@ export const HistoryCard:React.FC<SettingsCardProps> = (
 
     return React.useMemo(() => (
         <>
-            <SettingsCard {...{settings, settingsDispatcher, title, showContent, icon}} style={styles.card} status='primary'>
+            <SettingsCard {...{settings, settingsDispatcher, title, showContent, icon, onPressIn}} style={styles.card} status='primary'>
                 <Text appearance='hint'>Your wallets history, you can change your current wallet by clicking "use".</Text>
                 <HistoryList />
                 
             </SettingsCard>
         </>
-    ), [settings]);
+    ), [settings, showContent]);
 }
 
 const styles = StyleSheet.create({

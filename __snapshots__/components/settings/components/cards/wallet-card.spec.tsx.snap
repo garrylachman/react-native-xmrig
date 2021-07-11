@@ -1,0 +1,1819 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@wallet-card: component checks invalid wallet address: invalid wallet address 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#E4E9F2",
+        "borderRadius": 4,
+        "borderWidth": 1,
+        "opacity": 1,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FF3D71",
+          "height": 4,
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 25,
+            "paddingVertical": 8,
+          },
+          Object {},
+        ]
+      }
+      text="title"
+    >
+      <Text
+        appearance="default"
+        category="h6"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 18,
+              "fontWeight": "800",
+            },
+            undefined,
+          ]
+        }
+      >
+        title
+      </Text>
+      <View
+        style={
+          Object {
+            "transform": Array [
+              Object {
+                "scale": 1,
+              },
+            ],
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={25}
+          bbWidth={25}
+          fill="#8F9BB3"
+          focusable={false}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "height": 25,
+                "width": 25,
+              },
+              Object {
+                "flex": 0,
+                "height": 25,
+                "width": 25,
+              },
+            ]
+          }
+          vbHeight={24}
+          vbWidth={24}
+        >
+          <RNSVGGroup
+            fill={4287601587}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGGroup>
+              <RNSVGGroup>
+                <RNSVGRect
+                  height="24"
+                  opacity={0}
+                  width="24"
+                  x={0}
+                  y={0}
+                />
+                <RNSVGPath
+                  d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                />
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+    </View>
+    <View
+      appearance="default"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#EDF1F7",
+            "height": 1,
+          },
+          undefined,
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 24,
+          "paddingVertical": 16,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+            "overflow": "hidden",
+          }
+        }
+      >
+        <Text
+          appearance="default"
+          category="p1"
+          style={
+            Array [
+              Object {
+                "color": "#222B45",
+                "fontFamily": "System",
+                "fontSize": 15,
+                "fontWeight": "400",
+              },
+              Array [
+                Object {
+                  "color": "#8F9BB3",
+                  "fontFamily": "System",
+                  "fontSize": 12,
+                  "fontWeight": "800",
+                  "marginBottom": 4,
+                },
+                Object {
+                  "textAlign": "left",
+                },
+              ],
+            ]
+          }
+        >
+          XMR Address
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#F7F9FC",
+                "borderColor": "#FF3D71",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "minHeight": 40,
+                "paddingHorizontal": 8,
+                "paddingVertical": 7,
+              },
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            appearance="default"
+            editable={true}
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            placeholder="46gPyHjLPPM8HaayVyvCDcF2A8sq8b476VrwKMukrKg21obm1AKEwzoN3u4ooc55FKdNeF5B8vcs4ixbeCyuydr2A2sdsQi"
+            placeholderTextColor="#8F9BB3"
+            rejectResponderTermination={true}
+            size="medium"
+            status="danger"
+            style={
+              Array [
+                Object {
+                  "color": "#222B45",
+                  "fontFamily": "System",
+                  "fontSize": 15,
+                  "fontWeight": "normal",
+                  "marginHorizontal": 8,
+                },
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                null,
+                undefined,
+              ]
+            }
+            underlineColorAndroid="transparent"
+            value="123"
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+              "marginVertical": 5,
+            }
+          }
+        >
+          <Text
+            appearance="default"
+            category="c1"
+            status="danger"
+            style={
+              Array [
+                Object {
+                  "color": "#FF3D71",
+                  "fontFamily": "System",
+                  "fontSize": 12,
+                  "fontWeight": "400",
+                },
+                undefined,
+              ]
+            }
+          >
+            Error: XMR address is not valid
+          </Text>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(143, 155, 179, 0.24)",
+            "borderColor": "rgba(143, 155, 179, 0.24)",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "margin": 2,
+            "minHeight": 32,
+            "minWidth": 32,
+            "opacity": 1,
+            "paddingHorizontal": 8,
+            "paddingVertical": 8,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={16}
+            bbWidth={16}
+            fill="rgba(143, 155, 179, 0.48)"
+            focusable={false}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "height": 16,
+                  "marginHorizontal": 8,
+                  "tintColor": "rgba(143, 155, 179, 0.48)",
+                  "width": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 16,
+                  "width": 16,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+          >
+            <RNSVGGroup
+              fill={2056231859}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          appearance="default"
+          category="p1"
+          style={
+            Array [
+              Object {
+                "color": "#222B45",
+                "fontFamily": "System",
+                "fontSize": 15,
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "rgba(143, 155, 179, 0.48)",
+                "fontFamily": "System",
+                "fontSize": 12,
+                "fontWeight": "bold",
+                "marginHorizontal": 8,
+              },
+            ]
+          }
+        >
+          Save
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`@wallet-card: component checks no wallet: no wallet 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#E4E9F2",
+        "borderRadius": 4,
+        "borderWidth": 1,
+        "opacity": 1,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FF3D71",
+          "height": 4,
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 25,
+            "paddingVertical": 8,
+          },
+          Object {},
+        ]
+      }
+      text="title"
+    >
+      <Text
+        appearance="default"
+        category="h6"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 18,
+              "fontWeight": "800",
+            },
+            undefined,
+          ]
+        }
+      >
+        title
+      </Text>
+      <View
+        style={
+          Object {
+            "transform": Array [
+              Object {
+                "scale": 1,
+              },
+            ],
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={25}
+          bbWidth={25}
+          fill="#8F9BB3"
+          focusable={false}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "height": 25,
+                "width": 25,
+              },
+              Object {
+                "flex": 0,
+                "height": 25,
+                "width": 25,
+              },
+            ]
+          }
+          vbHeight={24}
+          vbWidth={24}
+        >
+          <RNSVGGroup
+            fill={4287601587}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGGroup>
+              <RNSVGGroup>
+                <RNSVGRect
+                  height="24"
+                  opacity={0}
+                  width="24"
+                  x={0}
+                  y={0}
+                />
+                <RNSVGPath
+                  d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                />
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+    </View>
+    <View
+      appearance="default"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#EDF1F7",
+            "height": 1,
+          },
+          undefined,
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 24,
+          "paddingVertical": 16,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+            "overflow": "hidden",
+          }
+        }
+      >
+        <Text
+          appearance="default"
+          category="p1"
+          style={
+            Array [
+              Object {
+                "color": "#222B45",
+                "fontFamily": "System",
+                "fontSize": 15,
+                "fontWeight": "400",
+              },
+              Array [
+                Object {
+                  "color": "#8F9BB3",
+                  "fontFamily": "System",
+                  "fontSize": 12,
+                  "fontWeight": "800",
+                  "marginBottom": 4,
+                },
+                Object {
+                  "textAlign": "left",
+                },
+              ],
+            ]
+          }
+        >
+          XMR Address
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#F7F9FC",
+                "borderColor": "#FF3D71",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "minHeight": 40,
+                "paddingHorizontal": 8,
+                "paddingVertical": 7,
+              },
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            appearance="default"
+            editable={true}
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            placeholder="46gPyHjLPPM8HaayVyvCDcF2A8sq8b476VrwKMukrKg21obm1AKEwzoN3u4ooc55FKdNeF5B8vcs4ixbeCyuydr2A2sdsQi"
+            placeholderTextColor="#8F9BB3"
+            rejectResponderTermination={true}
+            size="medium"
+            status="danger"
+            style={
+              Array [
+                Object {
+                  "color": "#222B45",
+                  "fontFamily": "System",
+                  "fontSize": 15,
+                  "fontWeight": "normal",
+                  "marginHorizontal": 8,
+                },
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                null,
+                undefined,
+              ]
+            }
+            underlineColorAndroid="transparent"
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+              "marginVertical": 5,
+            }
+          }
+        >
+          <Text
+            appearance="default"
+            category="c1"
+            status="danger"
+            style={
+              Array [
+                Object {
+                  "color": "#FF3D71",
+                  "fontFamily": "System",
+                  "fontSize": 12,
+                  "fontWeight": "400",
+                },
+                undefined,
+              ]
+            }
+          >
+            Error: XMR address is not valid
+          </Text>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(143, 155, 179, 0.24)",
+            "borderColor": "rgba(143, 155, 179, 0.24)",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "margin": 2,
+            "minHeight": 32,
+            "minWidth": 32,
+            "opacity": 1,
+            "paddingHorizontal": 8,
+            "paddingVertical": 8,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={16}
+            bbWidth={16}
+            fill="rgba(143, 155, 179, 0.48)"
+            focusable={false}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "height": 16,
+                  "marginHorizontal": 8,
+                  "tintColor": "rgba(143, 155, 179, 0.48)",
+                  "width": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 16,
+                  "width": 16,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+          >
+            <RNSVGGroup
+              fill={2056231859}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          appearance="default"
+          category="p1"
+          style={
+            Array [
+              Object {
+                "color": "#222B45",
+                "fontFamily": "System",
+                "fontSize": 15,
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "rgba(143, 155, 179, 0.48)",
+                "fontFamily": "System",
+                "fontSize": 12,
+                "fontWeight": "bold",
+                "marginHorizontal": 8,
+              },
+            ]
+          }
+        >
+          Save
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`@wallet-card: component checks showContent false: showContent false 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#E4E9F2",
+        "borderRadius": 4,
+        "borderWidth": 1,
+        "opacity": 1,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#EDF1F7",
+          "height": 4,
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 25,
+            "paddingVertical": 8,
+          },
+          Object {
+            "paddingVertical": 3,
+          },
+        ]
+      }
+      text="title"
+    >
+      <Text
+        appearance="hint"
+        category="s1"
+        style={
+          Array [
+            Object {
+              "color": "#8F9BB3",
+              "fontFamily": "System",
+              "fontSize": 15,
+              "fontWeight": "600",
+            },
+            undefined,
+          ]
+        }
+      >
+        title
+      </Text>
+      <View
+        style={
+          Object {
+            "transform": Array [
+              Object {
+                "scale": 1,
+              },
+            ],
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={25}
+          bbWidth={25}
+          fill="#8F9BB3"
+          focusable={false}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "height": 25,
+                "width": 25,
+              },
+              Object {
+                "flex": 0,
+                "height": 25,
+                "width": 25,
+              },
+            ]
+          }
+          vbHeight={24}
+          vbWidth={24}
+        >
+          <RNSVGGroup
+            fill={4287601587}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGGroup>
+              <RNSVGGroup>
+                <RNSVGRect
+                  height="24"
+                  opacity={0}
+                  width="24"
+                  x={0}
+                  y={0}
+                />
+                <RNSVGPath
+                  d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                />
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+    </View>
+    <View
+      appearance="default"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#EDF1F7",
+            "height": 1,
+          },
+          undefined,
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 24,
+          "paddingVertical": 16,
+        }
+      }
+    >
+      <Text
+        appearance="default"
+        category="c1"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 12,
+              "fontWeight": "400",
+            },
+            undefined,
+          ]
+        }
+      >
+        Click to show content
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`@wallet-card: component checks title change: title change 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#E4E9F2",
+        "borderRadius": 4,
+        "borderWidth": 1,
+        "opacity": 1,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#00E096",
+          "height": 4,
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 25,
+            "paddingVertical": 8,
+          },
+          Object {},
+        ]
+      }
+      text="title2"
+    >
+      <Text
+        appearance="default"
+        category="h6"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 18,
+              "fontWeight": "800",
+            },
+            undefined,
+          ]
+        }
+      >
+        title2
+      </Text>
+      <View
+        style={
+          Object {
+            "transform": Array [
+              Object {
+                "scale": 1,
+              },
+            ],
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={25}
+          bbWidth={25}
+          fill="#8F9BB3"
+          focusable={false}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "height": 25,
+                "width": 25,
+              },
+              Object {
+                "flex": 0,
+                "height": 25,
+                "width": 25,
+              },
+            ]
+          }
+          vbHeight={24}
+          vbWidth={24}
+        >
+          <RNSVGGroup
+            fill={4287601587}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGGroup>
+              <RNSVGGroup>
+                <RNSVGRect
+                  height="24"
+                  opacity={0}
+                  width="24"
+                  x={0}
+                  y={0}
+                />
+                <RNSVGPath
+                  d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                />
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+    </View>
+    <View
+      appearance="default"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#EDF1F7",
+            "height": 1,
+          },
+          undefined,
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 24,
+          "paddingVertical": 16,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+            "overflow": "hidden",
+          }
+        }
+      >
+        <Text
+          appearance="default"
+          category="p1"
+          style={
+            Array [
+              Object {
+                "color": "#222B45",
+                "fontFamily": "System",
+                "fontSize": 15,
+                "fontWeight": "400",
+              },
+              Array [
+                Object {
+                  "color": "#8F9BB3",
+                  "fontFamily": "System",
+                  "fontSize": 12,
+                  "fontWeight": "800",
+                  "marginBottom": 4,
+                },
+                Object {
+                  "textAlign": "left",
+                },
+              ],
+            ]
+          }
+        >
+          XMR Address
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#F7F9FC",
+                "borderColor": "#00E096",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "minHeight": 40,
+                "paddingHorizontal": 8,
+                "paddingVertical": 7,
+              },
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            appearance="default"
+            editable={true}
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            placeholder="46gPyHjLPPM8HaayVyvCDcF2A8sq8b476VrwKMukrKg21obm1AKEwzoN3u4ooc55FKdNeF5B8vcs4ixbeCyuydr2A2sdsQi"
+            placeholderTextColor="#8F9BB3"
+            rejectResponderTermination={true}
+            size="medium"
+            status="success"
+            style={
+              Array [
+                Object {
+                  "color": "#222B45",
+                  "fontFamily": "System",
+                  "fontSize": 15,
+                  "fontWeight": "normal",
+                  "marginHorizontal": 8,
+                },
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                null,
+                undefined,
+              ]
+            }
+            underlineColorAndroid="transparent"
+            value="46gPyHjLPPM8HaayVyvCDcF2A8sq8b476VrwKMukrKg21obm1AKEwzoN3u4ooc55FKdNeF5B8vcs4ixbeCyuydr2A2sdsQi"
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+              "marginVertical": 5,
+            }
+          }
+        >
+          <Text
+            appearance="default"
+            category="c1"
+            status="success"
+            style={
+              Array [
+                Object {
+                  "color": "#00E096",
+                  "fontFamily": "System",
+                  "fontSize": 12,
+                  "fontWeight": "400",
+                },
+                undefined,
+              ]
+            }
+          >
+            Valid XMR address
+          </Text>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#3366FF",
+            "borderColor": "#3366FF",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "margin": 2,
+            "minHeight": 32,
+            "minWidth": 32,
+            "opacity": 1,
+            "paddingHorizontal": 8,
+            "paddingVertical": 8,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={16}
+            bbWidth={16}
+            fill="#FFFFFF"
+            focusable={false}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "height": 16,
+                  "marginHorizontal": 8,
+                  "tintColor": "#FFFFFF",
+                  "width": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 16,
+                  "width": 16,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+          >
+            <RNSVGGroup
+              fill={4294967295}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          appearance="default"
+          category="p1"
+          style={
+            Array [
+              Object {
+                "color": "#222B45",
+                "fontFamily": "System",
+                "fontSize": 15,
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "System",
+                "fontSize": 12,
+                "fontWeight": "bold",
+                "marginHorizontal": 8,
+              },
+            ]
+          }
+        >
+          Save
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`@wallet-card: component checks valid wallet 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#E4E9F2",
+        "borderRadius": 4,
+        "borderWidth": 1,
+        "opacity": 1,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#00E096",
+          "height": 4,
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 25,
+            "paddingVertical": 8,
+          },
+          Object {},
+        ]
+      }
+      text="title"
+    >
+      <Text
+        appearance="default"
+        category="h6"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 18,
+              "fontWeight": "800",
+            },
+            undefined,
+          ]
+        }
+      >
+        title
+      </Text>
+      <View
+        style={
+          Object {
+            "transform": Array [
+              Object {
+                "scale": 1,
+              },
+            ],
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={25}
+          bbWidth={25}
+          fill="#8F9BB3"
+          focusable={false}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "height": 25,
+                "width": 25,
+              },
+              Object {
+                "flex": 0,
+                "height": 25,
+                "width": 25,
+              },
+            ]
+          }
+          vbHeight={24}
+          vbWidth={24}
+        >
+          <RNSVGGroup
+            fill={4287601587}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGGroup>
+              <RNSVGGroup>
+                <RNSVGRect
+                  height="24"
+                  opacity={0}
+                  width="24"
+                  x={0}
+                  y={0}
+                />
+                <RNSVGPath
+                  d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                />
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+    </View>
+    <View
+      appearance="default"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#EDF1F7",
+            "height": 1,
+          },
+          undefined,
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 24,
+          "paddingVertical": 16,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+            "overflow": "hidden",
+          }
+        }
+      >
+        <Text
+          appearance="default"
+          category="p1"
+          style={
+            Array [
+              Object {
+                "color": "#222B45",
+                "fontFamily": "System",
+                "fontSize": 15,
+                "fontWeight": "400",
+              },
+              Array [
+                Object {
+                  "color": "#8F9BB3",
+                  "fontFamily": "System",
+                  "fontSize": 12,
+                  "fontWeight": "800",
+                  "marginBottom": 4,
+                },
+                Object {
+                  "textAlign": "left",
+                },
+              ],
+            ]
+          }
+        >
+          XMR Address
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#F7F9FC",
+                "borderColor": "#00E096",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "minHeight": 40,
+                "paddingHorizontal": 8,
+                "paddingVertical": 7,
+              },
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            appearance="default"
+            editable={true}
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            placeholder="46gPyHjLPPM8HaayVyvCDcF2A8sq8b476VrwKMukrKg21obm1AKEwzoN3u4ooc55FKdNeF5B8vcs4ixbeCyuydr2A2sdsQi"
+            placeholderTextColor="#8F9BB3"
+            rejectResponderTermination={true}
+            size="medium"
+            status="success"
+            style={
+              Array [
+                Object {
+                  "color": "#222B45",
+                  "fontFamily": "System",
+                  "fontSize": 15,
+                  "fontWeight": "normal",
+                  "marginHorizontal": 8,
+                },
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+                null,
+                undefined,
+              ]
+            }
+            underlineColorAndroid="transparent"
+            value="46gPyHjLPPM8HaayVyvCDcF2A8sq8b476VrwKMukrKg21obm1AKEwzoN3u4ooc55FKdNeF5B8vcs4ixbeCyuydr2A2sdsQi"
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+              "marginVertical": 5,
+            }
+          }
+        >
+          <Text
+            appearance="default"
+            category="c1"
+            status="success"
+            style={
+              Array [
+                Object {
+                  "color": "#00E096",
+                  "fontFamily": "System",
+                  "fontSize": 12,
+                  "fontWeight": "400",
+                },
+                undefined,
+              ]
+            }
+          >
+            Valid XMR address
+          </Text>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#3366FF",
+            "borderColor": "#3366FF",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "margin": 2,
+            "minHeight": 32,
+            "minWidth": 32,
+            "opacity": 1,
+            "paddingHorizontal": 8,
+            "paddingVertical": 8,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={16}
+            bbWidth={16}
+            fill="#FFFFFF"
+            focusable={false}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "height": 16,
+                  "marginHorizontal": 8,
+                  "tintColor": "#FFFFFF",
+                  "width": 16,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 16,
+                  "width": 16,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+          >
+            <RNSVGGroup
+              fill={4294967295}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          appearance="default"
+          category="p1"
+          style={
+            Array [
+              Object {
+                "color": "#222B45",
+                "fontFamily": "System",
+                "fontSize": 15,
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "System",
+                "fontSize": 12,
+                "fontWeight": "bold",
+                "marginHorizontal": 8,
+              },
+            ]
+          }
+        >
+          Save
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
