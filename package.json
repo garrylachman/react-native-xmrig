@@ -27,6 +27,7 @@
     "react-native": "0.64.0",
     "react-native-awesome-table": "^1.0.4",
     "react-native-pager-view": "^5.1.5",
+    "react-native-reanimated": "^2.2.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",
     "react-native-shimmer": "^0.6.0",
@@ -48,6 +49,7 @@
     "eslint": "^7.14.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.64.0",
+    "react-native-gesture-handler": "^1.10.3",
     "react-native-testing-library": "^6.0.0",
     "react-test-renderer": "17.0.1",
     "typescript": "^3.8.3"
