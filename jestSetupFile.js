@@ -1,3 +1,5 @@
+global.__TEST__ = true;
+
 import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock';
 
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
@@ -14,6 +16,3 @@ jest.mock('react-native-reanimated', () => {
 
   return Reanimated;
 });
-
-// As of react-native@0.64.X file has moved
-jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');

@@ -28,7 +28,6 @@ describe('@settings-view: component checks', () => {
       );
 
     it('Snapshot', () => {
-        jest.useFakeTimers()
         
         const tree = render(
             <TestSettingsView/>,
