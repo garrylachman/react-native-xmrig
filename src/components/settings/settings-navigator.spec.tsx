@@ -11,13 +11,17 @@ import {
     AppearanceIcon,
     WalletIcon,
     HelpIcon,
+    LazyAppearanceScreen,
+    LazyHelpScreen,
+    LazyWalletScreen,
     TabNavigator
 } from './settings-navigator'
-import { ViewProps } from 'react-native';
+import { View, ViewProps } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { ScreenContainer } from 'react-native-screens';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
