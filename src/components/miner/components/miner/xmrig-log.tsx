@@ -1,7 +1,7 @@
 import { Card, Text } from '@ui-kitten/components';
 import React from 'react';
 import {View, StyleSheet, ViewProps} from 'react-native';
-import { IMinerLog } from '../../miner-view';
+import { IMinerLog } from '../../../../core/session-data/session-data.interface';
 
 type LogViewProps = ViewProps & {
     data: IMinerLog[]
