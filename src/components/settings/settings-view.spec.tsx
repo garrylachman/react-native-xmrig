@@ -10,7 +10,7 @@ import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import {
     SettingsView
 } from './settings-view'
-import { View, ViewProps } from 'react-native';
+import { ViewProps } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
@@ -28,6 +28,8 @@ describe('@settings-view: component checks', () => {
       );
 
     it('Snapshot', () => {
+        jest.useFakeTimers()
+        
         const tree = render(
             <TestSettingsView/>,
         ).toJSON();

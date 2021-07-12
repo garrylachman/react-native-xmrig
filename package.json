@@ -6,8 +6,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
-    "test:resnapshot": "NODE_OPTIONS='--experimental-vm-modules' jest -u",
+    "test": "jest",
+    "test:resnapshot": "jest -u",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {

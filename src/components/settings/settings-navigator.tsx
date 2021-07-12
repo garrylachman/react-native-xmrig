@@ -10,19 +10,19 @@ const WalletScreen = Lazy(() => import('./screens/wallet.screen'));
 const AppearanceScreen = Lazy(() => import('./screens/appearance.screen'));
 const HelpScreen = Lazy(() => import('./screens/help.screen'));
 
-export const LazyWalletScreen = () => (<LazyLoader><WalletScreen /></LazyLoader>)
-export const LazyAppearanceScreen = () => (<LazyLoader><AppearanceScreen /></LazyLoader>)
-export const LazyHelpScreen = () => (<LazyLoader><HelpScreen /></LazyLoader>)
+const LazyWalletScreen = () => (<LazyLoader><WalletScreen /></LazyLoader>)
+const LazyAppearanceScreen = () => (<LazyLoader><AppearanceScreen /></LazyLoader>)
+const LazyHelpScreen = () => (<LazyLoader><HelpScreen /></LazyLoader>)
 
-export const WalletIcon = (props:IconProps) => (
+const WalletIcon = (props:IconProps) => (
   <Icon {...props} name='credit-card'/>
 );
 
-export const AppearanceIcon = (props:IconProps) => (
+const AppearanceIcon = (props:IconProps) => (
   <Icon {...props} name='brush'/>
 );
 
-export const HelpIcon = (props:IconProps) => (
+const HelpIcon = (props:IconProps) => (
   <Icon {...props} name='question-mark-circle'/>
 );
 
