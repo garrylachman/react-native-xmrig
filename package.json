@@ -31,6 +31,7 @@
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",
     "react-native-shimmer": "^0.6.0",
+    "react-native-slider": "^0.11.0",
     "react-native-splash-screen": "^3.2.0",
     "react-native-svg": "^12.1.1",
     "react-native-svg-charts": "https://github.com/garrylachman/react-native-svg-charts.git#dev",
