@@ -1,4 +1,5 @@
 import React, { createContext, Context, useReducer, Dispatch, useEffect, useState, EffectCallback } from "react";
+import { NativeModules } from "react-native";
 import { SettingsActionType } from "./settings.actions";
 import { ISettings, ISettingsReducerAction, ThemeModes, Themes } from "./settings.interface";
 import { SettingsReducer } from "./settings.reducer";
@@ -8,7 +9,8 @@ const initialState: ISettings = {
     wallet: null,
     wallet_history: [],
     theme: Themes.DARK,
-    theme_mode: ThemeModes.ADVANCED
+    theme_mode: ThemeModes.ADVANCED,
+    max_threads: 2
 };
 
 export type SettingsStateDispatch = [state: ISettings, dispatch: Dispatch<ISettingsReducerAction>]

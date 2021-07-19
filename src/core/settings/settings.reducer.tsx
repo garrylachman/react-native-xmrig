@@ -18,12 +18,18 @@ export const SettingsReducer:Reducer<ISettings, ISettingsReducerAction> = (prevS
             return {
                 ...prevState,
                 theme: action.value as ThemeType
-            };
+            } as ISettings;
         case SettingsActionType.SET_THEME_MODE:
             return {
                 ...prevState,
                 theme_mode: action.value as ThemeModes
-            };
+            } as ISettings;
+        case SettingsActionType.SET_THREADS:
+            console.log("set thread to ", action.value)
+            return {
+                ...prevState,
+                max_threads: action.value as number
+            } as ISettings;
         case SettingsActionType.RESET_HISTORY:
             return {
                 ...prevState,

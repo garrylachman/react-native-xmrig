@@ -77,11 +77,11 @@ export const SessionDataContextProvider:React.FC = ({children}) =>  {
     switch(working) {
         case StartMode.START:
             setWorkingState("Benchmarking");
-            XMRigModule.start(settings.wallet?.address);
+            XMRigModule.start(settings.wallet?.address, settings.max_threads);
             break;
         case StartMode.REBANCH:
             setWorkingState("Benchmarking");
-            XMRigModule.rebench(settings.wallet?.address);
+            XMRigModule.rebench(settings.wallet?.address, settings.max_threads);
             break;
         case StartMode.STOP:
             setWorkingState("Stopped");

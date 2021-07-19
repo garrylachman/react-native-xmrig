@@ -19,13 +19,14 @@ export interface ISettingsWallet {
 export interface ISettings {
     wallet: ISettingsWallet | null;
     wallet_history: ISettingsWallet[];
-    theme: Themes,
-    theme_mode: ThemeModes
+    theme: Themes;
+    theme_mode: ThemeModes;
+    max_threads: number;
 }
 
 export interface ISettingsReducerAction {
     type: SettingsActionType;
-    value?: ISettingsWallet | ISettings | string;
+    value?: ISettingsWallet | ISettings | string | number;
 }
 
 export interface ISettingsContext {

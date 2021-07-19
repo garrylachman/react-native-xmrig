@@ -10,6 +10,8 @@ import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.facebook.react.bridge.Promise;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -92,22 +94,22 @@ public class XMRigModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void start(String wallet) {
+    public void start(String wallet, int threads) {
         Log.d("XMRigModule", "Create event called with wallet: " + wallet);
         //this.startMining(wallet, false);
         try {
-            iMiningService.startMiner(wallet, false);
+            iMiningService.startMiner(wallet, false, threads);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
     @ReactMethod
-    public void rebench(String wallet) {
+    public void rebench(String wallet, int threads) {
         this.stop();
         Log.d("XMRigModule", "Create event called with wallet: " + wallet);
         try {
-            iMiningService.startMiner(wallet, true);
+            iMiningService.startMiner(wallet, true, threads);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -120,6 +122,17 @@ public class XMRigModule extends ReactContextBaseJavaModule {
             iMiningService.stopMiner();
         } catch (RemoteException e) {
             e.printStackTrace();
+        }
+    }
+
+    @ReactMethod
+    public void availableProcessors(Promise promise) {
+        Log.d("XMRigModule", "availableProcessors="+String.valueOf(Runtime.getRuntime().availableProcessors()));
+        try {
+            Integer availableProcessors = Integer.valueOf(Runtime.getRuntime().availableProcessors());
+            promise.resolve(availableProcessors);
+        } catch(Exception e) {
+            promise.reject("Runtime.getRuntime().availableProcessors()", e);
         }
     }
 

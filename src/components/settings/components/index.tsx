@@ -2,5 +2,6 @@ export {
     WalletCard, 
     HistoryCard,
     ThemeCard,
-    ThemeModeCard
+    ThemeModeCard,
+    ThreadsCard
 } from './cards'

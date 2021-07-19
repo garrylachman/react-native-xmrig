@@ -147,11 +147,11 @@ public class MiningService extends Service {
 
     private final IMiningService.Stub binder = new IMiningService.Stub() {
         @Override
-        public void startMiner(String wallet, boolean forceNew) {
+        public void startMiner(String wallet, boolean forceNew, int threads) {
             MiningConfig cfg = newConfig(
                     wallet,
                     true);
-            startMining(cfg, forceNew);
+            startMining(cfg, forceNew, threads);
         }
 
         @Override
@@ -184,7 +184,7 @@ public class MiningService extends Service {
         }
     }
 
-    public void startMining(MiningConfig config, boolean forceNew) {
+    public void startMining(MiningConfig config, boolean forceNew, int threads) {
         PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
         PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                 "ReactNativeMiner::MinerWakeLock");
@@ -207,7 +207,10 @@ public class MiningService extends Service {
             Log.d(LOG_TAG, "PRIVATE DIR: " + getApplicationContext().getDataDir().getAbsolutePath());
 
             // run xmrig using the config
-            String[] args = {"./"+SoLoader.getLibraryPath("libxmrig.so"), "-c", getApplicationContext().getFilesDir().getAbsolutePath() + "/config.json"};
+            String[] args = {
+                    "./"+SoLoader.getLibraryPath("libxmrig.so"),
+                    "-c", getApplicationContext().getFilesDir().getAbsolutePath() + "/config.json",
+                    "-t", String.valueOf(threads)};
             ProcessBuilder pb = new ProcessBuilder(args);
             // in our directory
             //pb.directory(new File(getApplicationContext().getFilesDir().getAbsolutePath()+"/../lib/"));
@@ -234,6 +237,7 @@ public class MiningService extends Service {
 
 
     public int getAvailableCores() {
+
         return Runtime.getRuntime().availableProcessors()/2;
     }
 

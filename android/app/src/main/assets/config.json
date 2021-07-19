@@ -36,7 +36,12 @@
     "max-threads-hint": 70,
     "asm": true,
     "argon2-impl": null,
-    "astrobwt-max-size": 550,
+    "astrobwt-max-size": 100,
+    "*": {
+      "intensity": 1,
+      "threads": 2,
+      "affinity": -1
+    },
     "astrobwt-avx2": false,
     "cn/0": false,
     "cn-lite/0": false,
