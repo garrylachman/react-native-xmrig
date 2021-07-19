@@ -26,8 +26,8 @@ const AdvancedMode:React.FC<MinerControlProps> = (
 ) => (
     <>
         <Button style={styles.button} disabled={isStartButtonDisabled} onPress={handleStart}>Start</Button>
-        <Button status={'warning'} style={styles.button} disabled={isStartButtonDisabled} onPress={handleStop}>Re-Benchmark</Button>
-        <Button status={'danger'} style={styles.button} disabled={!isStartButtonDisabled} onPress={handleBench}>Stop</Button>
+        <Button status={'warning'} style={styles.button} disabled={isStartButtonDisabled} onPress={handleBench}>Re-Benchmark</Button>
+        <Button status={'danger'} style={styles.button} disabled={!isStartButtonDisabled} onPress={handleStop}>Stop</Button>
     </>
 )
 
