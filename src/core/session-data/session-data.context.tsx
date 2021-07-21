@@ -7,6 +7,7 @@ import { IPoolSummary, usePool } from "../hooks";
 import { SettingsContext, SettingsStateDispatch } from "../settings";
 import { NativeModules, NativeEventEmitter } from "react-native";
 import { parseLogLine } from "../utils/parsers";
+import analytics from '@react-native-firebase/analytics';
 
 const { XMRigModule } = NativeModules;
 
@@ -54,9 +55,18 @@ export const SessionDataContextProvider:React.FC = ({children}) =>  {
   React.useEffect(() => {
     if (!isNaN(parseFloat(`${minerData?.hashrate.total[0]}`))) {
         hashrateHistory.add(parseFloat(`${minerData?.hashrate.total[0]}`));
+        analytics().logEvent('hashrate', {
+          hashrate: parseFloat(`${minerData?.hashrate.total[0]}`)
+        });
     }
   }, [minerData])
 
+  React.useEffect(() => {
+    analytics().logEvent('algo', {
+      algo: minerData?.algo
+    });
+  }, [minerData?.algo])
+  
   React.useEffect(() => {
     if (poolData?.hash) {
         poolRawHashrateHistory.add(poolData?.hash);

@@ -1,7 +1,19 @@
 {
   "name": "reactnativexmrig",
-  "version": "1.0.16",
-  "private": true,
+  "version": "1.0.17",
+  "description": "React Native App that uses an optimized version of XMRig to run on mobile. Using MoneroOcean auto-switching algo to mine the most profitable coin. ",
+  "author": {
+    "name": "Garry Lachman",
+    "email": "garry@lachman.co",
+    "url": "https://github.com/garrylachman/react-native-xmrig"
+  },
+  "displayName": "React Native XMRig for Android",
+  "homepage": "https://github.com/garrylachman/react-native-xmrig",
+  "repository": {
+    "url": "https://github.com/garrylachman/react-native-xmrig",
+    "type": "git"
+  },
+  "license": "MIT",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
