@@ -16,6 +16,7 @@ export interface ISettingsWallet {
     timestamp: string;
 }
 
+
 export interface ISettings {
     wallet: ISettingsWallet | null;
     wallet_history: ISettingsWallet[];

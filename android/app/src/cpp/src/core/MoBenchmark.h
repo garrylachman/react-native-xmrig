@@ -45,7 +45,7 @@ class MoBenchmark : public IJobResultListener {
             RX_0,          // "rx/0"             RandomX (Monero).
             RX_WOW,        // "rx/wow"           RandomWOW (Wownero).
             RX_ARQ,        // "rx/arq"           RandomARQ (Arqma).
-            RX_XLA,        // "panthera"         Panthera (Scala2).
+            //RX_XLA,        // "panthera"         Panthera (Scala2).
             MAX,
             MIN = 0,
             INVALID = -1,
@@ -64,7 +64,7 @@ class MoBenchmark : public IJobResultListener {
             Algorithm::RX_0,
             Algorithm::RX_WOW,
             Algorithm::RX_ARQ,
-            Algorithm::RX_XLA,
+            //Algorithm::RX_XLA,
         };
 
         Job* m_bench_job[BenchAlgo::MAX];
