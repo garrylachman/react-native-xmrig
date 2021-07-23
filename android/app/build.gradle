@@ -3,6 +3,7 @@ apply plugin: 'com.google.gms.google-services'
 
 import com.android.build.OutputFile
 
+
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
@@ -167,8 +168,8 @@ android {
         applicationId "com.reactnativexmrig"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 19
-        versionName "1.0.19"
+        versionCode 20
+        versionName "1.0.20"
         externalNativeBuild {
             cmake {
                 arguments "-DUV_INCLUDE_DIR=app/src/cpp/include"

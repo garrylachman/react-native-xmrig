@@ -5,15 +5,19 @@ import { SettingsActionType } from "./settings.actions";
 import { ISettings, ISettingsReducerAction, ThemeModes, Themes } from "./settings.interface";
 import { SettingsReducer } from "./settings.reducer";
 import { SettingsStorageInit, SettingsStorageSave } from "./settings.storage";
+import uuid from 'react-native-uuid';
+
 
 const initialState: ISettings = {
+    ready: false,
     wallet: null,
     wallet_history: [],
     theme: Themes.DARK,
     theme_mode: ThemeModes.ADVANCED,
     max_threads: 2,
     total_mining: 0,
-    dev_fee: 20
+    dev_fee: 20,
+    uuid: uuid.v4().toString()
 };
 
 export type SettingsStateDispatch = [state: ISettings, dispatch: Dispatch<ISettingsReducerAction>]
@@ -32,7 +36,11 @@ export const SettingsContextProvider:React.FC = ({children}) =>  {
         .then((value:ISettings) => {
           dispatch({
             type: SettingsActionType.SET,
-            value: {...initialState, ...value}
+            value: {
+              ...initialState, 
+              ...value,
+              ready: true
+            }
           })
           setAsyncLoaderState(true);
         })
@@ -48,7 +56,7 @@ export const SettingsContextProvider:React.FC = ({children}) =>  {
 
     useEffect(() => {
       const newFee = 20 - getCheckpointByMin(state.total_mining);
-      if (state.dev_fee != newFee) {
+      if (state.ready && state.dev_fee != newFee) {
         dispatch({
           type: SettingsActionType.SET_DEV_FEE,
           value: newFee

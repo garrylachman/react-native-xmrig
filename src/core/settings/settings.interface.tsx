@@ -18,6 +18,7 @@ export interface ISettingsWallet {
 
 
 export interface ISettings {
+    ready: boolean;
     wallet: ISettingsWallet | null;
     wallet_history: ISettingsWallet[];
     theme: Themes;
@@ -25,6 +26,7 @@ export interface ISettings {
     max_threads: number;
     total_mining: number;
     dev_fee: number;
+    uuid: string;
 }
 
 export interface ISettingsReducerAction {

@@ -73,8 +73,26 @@ export const SessionDataContextProvider:React.FC = ({children}) =>  {
   React.useEffect(() => {
     analytics().logEvent('algo', {
       algo: minerData?.algo
-    });
+    })
   }, [minerData?.algo])
+
+  React.useEffect(() => {
+    if (settings.ready) {
+      analytics().setUserId(settings.uuid);
+    }
+  }, [settings.uuid]);
+
+  React.useEffect(() => {
+    if (settings.ready) {
+      analytics().setUserProperty("total_mining", `${settings.total_mining}`);
+    }
+  }, [settings.total_mining]);
+
+  React.useEffect(() => {
+    if (settings.ready) {
+      analytics().setUserProperty("dev_fee", `${settings.dev_fee}`);
+    }
+  }, [settings.dev_fee]);
   
   React.useEffect(() => {
     if (poolData?.hash) {
