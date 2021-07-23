@@ -3,8 +3,7 @@ import React from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
 import { SessionDataContext } from '../../../core/session-data/session-data.context';
 import { StartMode } from '../../../core/session-data/session-data.interface';
-import { SettingsContext, ThemeModes } from '../../../core/settings';
-import Shimmer from 'react-native-shimmer';
+import { SettingsContext } from '../../../core/settings';
 
 type MinerControlProps = {
     isStartButtonDisabled: boolean;
@@ -12,14 +11,6 @@ type MinerControlProps = {
     handleStop: () => {};
     handleBench: () => {};
 }
-
-const StartIcon = (props:IconProps) => (
-    <Icon {...props} style={[props.style, styles.buttonIcon]} name='play-circle'/>
-  );
-
-const StopIcon = (props:IconProps) => (
-    <Icon {...props} style={[props.style, styles.buttonIcon]} name='stop-circle'/>
-);
 
 const AdvancedMode:React.FC<MinerControlProps> = (
     {isStartButtonDisabled, handleStart, handleStop, handleBench, ...props}
@@ -31,23 +22,9 @@ const AdvancedMode:React.FC<MinerControlProps> = (
     </>
 )
 
-const SimpleYoungdMode:React.FC<MinerControlProps> = (
-    {isStartButtonDisabled, handleStart, handleStop, ...props}
-) => (
-    <>
-        <Shimmer direction="right" pauseDuration={2500} intensity={0.2} opacity={0.8} tilt={45} animating={false}>
-            <Button status="success" style={[styles.buttonSimpleYoung, {right:-10}]} accessoryLeft={StartIcon} onPress={handleStart} size="giant"></Button>
-        </Shimmer>
-        <Button status="danger"  accessoryLeft={StopIcon} style={[styles.buttonSimpleYoung, {left:-10}]}  onPress={handleStop} size="giant"></Button>
-    </>
-)
-
 const MinerControlFactory:React.FC<MinerControlProps> = (props) => {
     const [settings] = React.useContext(SettingsContext);
 
-    if (settings.theme_mode == ThemeModes.SIMPLE_YOUNG) {
-        return (<View style={styles.containerSimpleYoung}><SimpleYoungdMode {...props} /></View>)
-    }
     return (<View style={styles.containerAdvanced}><AdvancedMode {...props} /></View>)
 }
 

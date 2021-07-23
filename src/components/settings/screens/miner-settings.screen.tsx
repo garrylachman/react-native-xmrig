@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Divider, Layout } from '@ui-kitten/components';
 import { SettingsContext, SettingsStateDispatch } from '../../../core/settings';
-import { ThreadsCard } from '../components';
+import { ThemeCard, ThreadsCard } from '../components';
 
 const MinerSettingsScreen = () => {
 
@@ -17,6 +17,13 @@ const MinerSettingsScreen = () => {
                     settings={settings} 
                     settingsDispatcher={settingsDispatcher}
                 />
+                <Divider style={{marginVertical: 10}} />
+                <ThemeCard 
+                    title="Theme"
+                    icon="brush"
+                    settings={settings} 
+                    settingsDispatcher={settingsDispatcher}
+                />  
             </View>
         </Layout>
     )

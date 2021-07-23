@@ -14,8 +14,7 @@ export const rewardCheckpoints = [
     9600,
     19200,
     38400,
-    76800,
-    153600
+    76800
 ];
 
 

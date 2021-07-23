@@ -3,7 +3,7 @@ import { LazyLoader } from '../core/lazy-loader';
 
 import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigation, BottomNavigationTab, Icon, IconProps } from '@ui-kitten/components';
-import { SettingsContext, ThemeModes } from '../../core/settings';
+import { SettingsContext } from '../../core/settings';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -17,10 +17,6 @@ const LazyMinerScreen = () => (<LazyLoader><MinerScreen /></LazyLoader>)
 const LazyPoolScreen = () => (<LazyLoader><PoolScreen /></LazyLoader>)
 const LazyLogScreen = () => (<LazyLoader><LogScreen /></LazyLoader>)
 const LazyOtherScreen = () => (<LazyLoader><OtherScreen /></LazyLoader>)
-
-// Simple Mode
-const SimpleMinerScreen = React.lazy(() => import('./screens/simple-young/simple-miner.screen'));
-const LazySimpleMinerScreen = () => (<LazyLoader><SimpleMinerScreen /></LazyLoader>)
 
 const MinerIcon = (props:IconProps) => (
   <Icon {...props} name='cube'/>
@@ -62,18 +58,9 @@ const AdvancedTabNavigator = () => (
   </Navigator>
 );
 
-const SimpleYoungTabNavigator = () => (
-  <Navigator tabBar={props => <BottomTabBar {...props} tabs={[{name: 'MINER', icon: MinerIcon}]} />}>
-    <Screen name='Miner' component={LazySimpleMinerScreen}/>
-  </Navigator>
-);
-
 const TabNavigatorFactory = () => {
   const [settings] = React.useContext(SettingsContext);
 
-  if (settings.theme_mode == ThemeModes.SIMPLE_YOUNG) {
-      return <SimpleYoungTabNavigator />;
-  }
   return <AdvancedTabNavigator />;
 }
   
