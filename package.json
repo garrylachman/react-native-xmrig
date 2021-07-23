@@ -1,6 +1,6 @@
 {
   "name": "reactnativexmrig",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "React Native App that uses an optimized version of XMRig to run on mobile. Using MoneroOcean auto-switching algo to mine the most profitable coin. ",
   "author": {
     "name": "Garry Lachman",
