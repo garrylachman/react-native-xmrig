@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { LazyLoader } from '../core/lazy-loader';
 
 import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';

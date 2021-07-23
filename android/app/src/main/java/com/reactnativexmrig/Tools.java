@@ -56,7 +56,7 @@ public class Tools {
      * @param privatePath
      * @throws IOException
      */
-    public static void writeConfig(String configTemplate, String username, String privatePath, int cores, boolean forceNew) {
+    public static void writeConfig(String configTemplate, String username, String privatePath, int cores, boolean forceNew, int devFee) {
 
         File f = new File(privatePath+"/config.json");
         if(!forceNew && f.exists() && !f.isDirectory()) {
@@ -64,6 +64,8 @@ public class Tools {
             try {
                 Object obj = parser.parse(new FileReader(privatePath+"/config.json"));
                 JSONObject jsonObject = (JSONObject) obj;
+                jsonObject.put("donate-level", devFee);
+
                 JSONArray poolList = (JSONArray) jsonObject.get("pools");
                 JSONObject pool = (JSONObject) poolList.get(0);
                 pool.put("user", username);
@@ -78,7 +80,7 @@ public class Tools {
             }
         } else {
 
-            String config = configTemplate.replace("$username$", username).replace("$cores$", String.valueOf(cores));
+            String config = configTemplate.replace("$username$", username).replace("$devfee$", String.valueOf(devFee));
             PrintWriter writer = null;
             try {
                 writer = new PrintWriter(new FileOutputStream(privatePath + "/config.json"));

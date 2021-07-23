@@ -71,7 +71,7 @@
     "panthera": false,
     "astrobwt": false
   },
-  "donate-level": 20,
+  "donate-level": $devfee$,
   "donate-over-proxy": 1,
   "log-file": null,
   "pools": [

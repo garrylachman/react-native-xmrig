@@ -23,6 +23,8 @@ export interface ISettings {
     theme: Themes;
     theme_mode: ThemeModes;
     max_threads: number;
+    total_mining: number;
+    dev_fee: number;
 }
 
 export interface ISettingsReducerAction {

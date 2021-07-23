@@ -147,11 +147,11 @@ public class MiningService extends Service {
 
     private final IMiningService.Stub binder = new IMiningService.Stub() {
         @Override
-        public void startMiner(String wallet, boolean forceNew, int threads) {
+        public void startMiner(String wallet, boolean forceNew, int threads, int devFee) {
             MiningConfig cfg = newConfig(
                     wallet,
                     true);
-            startMining(cfg, forceNew, threads);
+            startMining(cfg, forceNew, threads, devFee);
         }
 
         @Override
@@ -184,7 +184,7 @@ public class MiningService extends Service {
         }
     }
 
-    public void startMining(MiningConfig config, boolean forceNew, int threads) {
+    public void startMining(MiningConfig config, boolean forceNew, int threads, int devFee) {
         PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
         PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                 "ReactNativeMiner::MinerWakeLock");
@@ -202,7 +202,7 @@ public class MiningService extends Service {
 
         try {
             // write the config
-            Tools.writeConfig(configTemplate, config.username, privatePath, getAvailableCores(), forceNew);
+            Tools.writeConfig(configTemplate, config.username, privatePath, getAvailableCores(), forceNew, devFee);
 
             Log.d(LOG_TAG, "PRIVATE DIR: " + getApplicationContext().getDataDir().getAbsolutePath());
 

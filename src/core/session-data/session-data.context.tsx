@@ -1,10 +1,10 @@
 import React from "react";
-import { IMinerSummary, useMinerHttpd } from "../hooks";
+import { IMinerSummary, useInterval, useMinerHttpd } from "../hooks";
 import { IMinerBackend, useBackendHttpd } from "../hooks";
 import { useHashrateHistory } from "../hooks";
 import { IMinerLog, StartMode, IXMRigLogEvent } from "./session-data.interface";
 import { IPoolSummary, usePool } from "../hooks";
-import { SettingsContext, SettingsStateDispatch } from "../settings";
+import { SettingsActionType, SettingsContext, SettingsStateDispatch } from "../settings";
 import { NativeModules, NativeEventEmitter } from "react-native";
 import { parseLogLine } from "../utils/parsers";
 import analytics from '@react-native-firebase/analytics';
@@ -52,6 +52,15 @@ export const SessionDataContextProvider:React.FC = ({children}) =>  {
 
   const { backendsStatus, backendsData } = useBackendHttpd(50080);
 
+  useInterval(() => {
+    if (workingState == "Minning") {
+      settingsDispatcher({
+        type: SettingsActionType.ADD_MINING_MIN,
+        value: 1
+      })
+    }
+  }, 1000*60)
+
   React.useEffect(() => {
     if (!isNaN(parseFloat(`${minerData?.hashrate.total[0]}`))) {
         hashrateHistory.add(parseFloat(`${minerData?.hashrate.total[0]}`));
@@ -80,6 +89,9 @@ export const SessionDataContextProvider:React.FC = ({children}) =>  {
     if (minerStatus) {
       setWorkingState("Minning");
     }
+    if (!minerStatus && workingState == "Minning") {
+      setWorking(StartMode.STOP);
+    }
   }, [minerStatus]);
 
   React.useEffect(() => {
@@ -87,11 +99,11 @@ export const SessionDataContextProvider:React.FC = ({children}) =>  {
     switch(working) {
         case StartMode.START:
             setWorkingState("Benchmarking");
-            XMRigModule.start(settings.wallet?.address, settings.max_threads);
+            XMRigModule.start(settings.wallet?.address, settings.max_threads, settings.dev_fee);
             break;
         case StartMode.REBANCH:
             setWorkingState("Benchmarking");
-            XMRigModule.rebench(settings.wallet?.address, settings.max_threads);
+            XMRigModule.rebench(settings.wallet?.address, settings.max_threads, settings.dev_fee);
             break;
         case StartMode.STOP:
             setWorkingState("Stopped");

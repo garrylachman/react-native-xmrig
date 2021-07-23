@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     containerAdvanced: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingVertical: 10,
+        paddingVertical: 11,
         paddingHorizontal: 15
     },
     containerSimpleYoung: {
