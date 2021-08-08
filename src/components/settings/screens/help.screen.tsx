@@ -26,7 +26,6 @@ const HelpScreen = () => {
                 <Text category="c1" style={styles.link} onPress={() => Linking.openURL('https://wallet.mymonero.com/')}>* https://wallet.mymonero.com/</Text>
                 <Text category="c1" style={styles.link} onPress={() => Linking.openURL('https://www.xmrwallet.com/')}>* https://www.xmrwallet.com/</Text>
                 <Text category="c1" style={styles.link} onPress={() => Linking.openURL('https://guarda.co/app/')}>* https://guarda.co/app/</Text>
-                <Text category="c1" style={styles.link} onPress={() => Linking.openURL('https://app.freewallet.org/')}>* https://app.freewallet.org/</Text>
                 <Text category="c1" style={styles.link} onPress={() => Linking.openURL('https://www.cryptonator.com/about/xmr')}>* https://www.cryptonator.com/about/xmr</Text>
             </View>
         </Layout>
