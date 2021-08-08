@@ -6,6 +6,9 @@ import { ISettings, ISettingsReducerAction, ThemeModes, Themes } from "./setting
 import { SettingsReducer } from "./settings.reducer";
 import { SettingsStorageInit, SettingsStorageSave } from "./settings.storage";
 import uuid from 'react-native-uuid';
+import { useInterval } from "../hooks";
+
+const { XMRigModule } = NativeModules;
 
 
 const initialState: ISettings = {
@@ -29,6 +32,13 @@ export const SettingsContext:Context<SettingsStateDispatch> = createContext<Sett
 export const SettingsContextProvider:React.FC = ({children}) =>  {
     const [state, dispatch]:SettingsStateDispatch = useReducer(SettingsReducer, initialState);
     const [asyncLoaderState, setAsyncLoaderState] = useState<boolean>(false);
+    const [nativeTotalMining, setNativeTotalMining] = useState<number>(0);
+
+    useInterval(() => {
+      XMRigModule.totalMiningMinutes()
+        .then((value: number) => setNativeTotalMining(value))
+        .catch(() => {})
+    }, 60*1000);
 
     useEffect(() => {
       console.log("settings effect - SettingsStorageInit");
@@ -45,6 +55,10 @@ export const SettingsContextProvider:React.FC = ({children}) =>  {
           setAsyncLoaderState(true);
         })
         .catch((e) => console.log(e));
+      
+      XMRigModule.totalMiningMinutes()
+        .then((value: number) => setNativeTotalMining(value))
+        .catch(() => {})
     }, []);
 
     useEffect(() => {
@@ -55,14 +69,16 @@ export const SettingsContextProvider:React.FC = ({children}) =>  {
     }, [state]);
 
     useEffect(() => {
-      const newFee = 20 - getCheckpointByMin(state.total_mining);
+      console.log("total_mining: ", state.total_mining, "nativeTotalMining: " + nativeTotalMining);
+
+      const newFee = 20 - getCheckpointByMin(state.total_mining + nativeTotalMining);
       if (state.ready && state.dev_fee != newFee) {
         dispatch({
           type: SettingsActionType.SET_DEV_FEE,
           value: newFee
         })
       }
-    }, [state.total_mining])
+    }, [state.total_mining, nativeTotalMining])
 
     return (
         <SettingsContext.Provider value={[state, dispatch]}>
