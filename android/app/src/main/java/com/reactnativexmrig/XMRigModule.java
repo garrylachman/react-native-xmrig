@@ -9,8 +9,11 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.WritableNativeArray;
+import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.bridge.Promise;
+import com.reactnativexmrig.data.DAO.MinerHistoryDao;
 import com.reactnativexmrig.data.MinerDatabase;
 
 
@@ -104,6 +107,29 @@ public class XMRigModule extends ReactContextBaseJavaModule {
             promise.resolve(total_mining);
         } catch(Exception e) {
             promise.reject("minerDatabase.minerHistoryDao().getTotalMiningMinutes().get(0).total_mining", e);
+        }
+    }
+
+    @ReactMethod
+    public void getMinerHistoryBySessionAndAlgo(Promise promise) {
+        Log.d("XMRigModule", "totalMiningMinutes="+minerDatabase.minerHistoryDao().getMinerHistoryBySessionAndAlgo());
+        try {
+            WritableArray history = new WritableNativeArray();
+            for (MinerHistoryDao.MinerHistoryBySessionAndAlgo item : minerDatabase.minerHistoryDao().getMinerHistoryBySessionAndAlgo()) {
+
+                WritableMap info = new WritableNativeMap();
+                info.putString("start_date", item.start_date);
+                info.putString("end_date", item.end_date);
+                info.putDouble("mining_in_minutes", Double.valueOf(item.mining_in_minutes));
+                info.putString("algo", item.algo);
+                info.putDouble("avg_hashrate", Double.valueOf(item.avg_hashrate));
+                history.pushMap(info);
+                Log.d("XMRigModule", "item.start_date: " + item.start_date);
+            }
+
+            promise.resolve(history);
+        } catch(Exception e) {
+            promise.reject("minerDatabase.minerHistoryDao().getTotalMiningMinutes().getMinerHistoryBySessionAndAlgo()", e);
         }
     }
 
