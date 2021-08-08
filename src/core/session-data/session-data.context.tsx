@@ -52,15 +52,6 @@ export const SessionDataContextProvider:React.FC = ({children}) =>  {
 
   const { backendsStatus, backendsData } = useBackendHttpd(50080);
 
-  useInterval(() => {
-    if (workingState == "Minning") {
-      settingsDispatcher({
-        type: SettingsActionType.ADD_MINING_MIN,
-        value: 1
-      })
-    }
-  }, 1000*60)
-
   React.useEffect(() => {
     if (!isNaN(parseFloat(`${minerData?.hashrate.total[0]}`))) {
         hashrateHistory.add(parseFloat(`${minerData?.hashrate.total[0]}`));

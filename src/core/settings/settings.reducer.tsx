@@ -35,11 +35,6 @@ export const SettingsReducer:Reducer<ISettings, ISettingsReducerAction> = (prevS
                 ...prevState,
                 wallet_history: []
             } as ISettings;
-        case SettingsActionType.ADD_MINING_MIN:
-            return {
-                ...prevState,
-                total_mining: prevState.total_mining + (action.value as number)
-            }
         case SettingsActionType.SET_DEV_FEE:
             return {
                 ...prevState,

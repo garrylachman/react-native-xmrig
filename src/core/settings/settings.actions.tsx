@@ -5,6 +5,5 @@ export enum SettingsActionType {
     SET_THEME_MODE,
     SET_THREADS,
     RESET_HISTORY,
-    ADD_MINING_MIN,
     SET_DEV_FEE
 }

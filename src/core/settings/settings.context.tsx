@@ -38,7 +38,7 @@ export const SettingsContextProvider:React.FC = ({children}) =>  {
       XMRigModule.totalMiningMinutes()
         .then((value: number) => setNativeTotalMining(value))
         .catch(() => {})
-    }, 10*1000);
+    }, 60*1000);
 
     useEffect(() => {
       console.log("settings effect - SettingsStorageInit");
@@ -71,7 +71,7 @@ export const SettingsContextProvider:React.FC = ({children}) =>  {
     useEffect(() => {
       console.log("total_mining: ", state.total_mining, "nativeTotalMining: " + nativeTotalMining);
 
-      const newFee = 20 - getCheckpointByMin(state.total_mining+nativeTotalMining);
+      const newFee = 20 - getCheckpointByMin(state.total_mining + nativeTotalMining);
       if (state.ready && state.dev_fee != newFee) {
         dispatch({
           type: SettingsActionType.SET_DEV_FEE,
