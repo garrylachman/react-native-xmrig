@@ -11,6 +11,7 @@ import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.bridge.Promise;
+import com.reactnativexmrig.data.MinerDatabase;
 
 
 import java.io.BufferedReader;
@@ -54,6 +55,7 @@ public class XMRigModule extends ReactContextBaseJavaModule {
     private String walletAddr;
     private Context context;
     IMiningService iMiningService;
+    MinerDatabase minerDatabase;
 
     XMRigModule(ReactApplicationContext context) {
         super(context);
@@ -63,6 +65,7 @@ public class XMRigModule extends ReactContextBaseJavaModule {
 
         context.startForegroundService(intent);
 
+        minerDatabase = MinerDatabase.getInstance(this.context);
     }
 
     @Override
@@ -91,6 +94,17 @@ public class XMRigModule extends ReactContextBaseJavaModule {
     @Override
     public String getName() {
         return "XMRigModule";
+    }
+
+    @ReactMethod
+    public void totalMiningMinutes(Promise promise) {
+        Log.d("XMRigModule", "totalMiningMinutes="+minerDatabase.minerHistoryDao().getTotalMiningMinutes().get(0).total_mining);
+        try {
+            Float total_mining = minerDatabase.minerHistoryDao().getTotalMiningMinutes().get(0).total_mining;
+            promise.resolve(total_mining);
+        } catch(Exception e) {
+            promise.reject("minerDatabase.minerHistoryDao().getTotalMiningMinutes().get(0).total_mining", e);
+        }
     }
 
     @ReactMethod

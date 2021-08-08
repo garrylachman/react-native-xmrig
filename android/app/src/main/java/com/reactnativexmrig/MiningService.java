@@ -19,8 +19,16 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.facebook.soloader.SoLoader;
+import com.reactnativexmrig.data.DAO.MinerHistoryDao;
+import com.reactnativexmrig.data.MinerDatabase;
+import com.reactnativexmrig.data.entity.MinerHistory;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,6 +42,10 @@ import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 enum MinnerState  {
     BENCHMARKING,
@@ -63,6 +75,7 @@ public class MiningService extends Service {
     private String privatePath;
     private String workerId;
     private OutputReaderThread outputHandler;
+    private MinerHistoryInserterThread historyInserterHandler;
 
     @Override
     public void onCreate() {
@@ -101,7 +114,6 @@ public class MiningService extends Service {
 
         // Notification ID cannot be 0.
         this.startForeground(NOTIFICATION_ID, notificationbuilder.build());
-
     }
 
 
@@ -166,15 +178,15 @@ public class MiningService extends Service {
         super.onDestroy();
     }
 
-    /*@Override
-    public IBinder onBind(Intent intent) {
-        return new MiningServiceBinder();
-    }
-*/
     public void stopMining() {
         if (outputHandler != null) {
             outputHandler.interrupt();
             outputHandler = null;
+        }
+        if (historyInserterHandler != null) {
+            historyInserterHandler.interrupt();
+            historyInserterHandler.gracefullyQuit();
+            historyInserterHandler = null;
         }
         if (process != null) {
             process.destroy();
@@ -223,6 +235,13 @@ public class MiningService extends Service {
             // start processing xmrig's output
             outputHandler = new MiningService.OutputReaderThread(process.getInputStream());
             outputHandler.start();
+
+            historyInserterHandler = new MiningService.MinerHistoryInserterThread(
+                    MinerDatabase.getInstance(getApplicationContext()).minerHistoryDao()
+            );
+            historyInserterHandler.start();
+
+
 
             Toast.makeText(this, "started", Toast.LENGTH_SHORT).show();
 
@@ -276,5 +295,71 @@ public class MiningService extends Service {
                 Log.w(LOG_TAG, "exception", e);
             }
         }
+    }
+
+    private class MinerHistoryInserterThread extends Thread {
+
+        private volatile boolean active;
+
+        private OkHttpClient client = new OkHttpClient();
+        private Request request = new Request.Builder()
+                .url("http://127.0.0.1:50080/2/summary")
+                .build();
+        private String session_id = UUID.randomUUID().toString();
+        private MinerHistoryDao minerHistoryDao;
+
+        MinerHistoryInserterThread(MinerHistoryDao minerHistoryDao) {
+            this.minerHistoryDao = minerHistoryDao;
+            this.active = true;
+        }
+
+        public void gracefullyQuit() {
+            this.active = false;
+        }
+
+        public void run() {
+            while (active) {
+                try {
+                    Response response = client.newCall(request).execute();
+
+                    JSONParser parser = new JSONParser();
+                    JSONObject obj = (JSONObject) parser.parse(response.body().string());
+                    // Algo
+                    String algo = (String) obj.get("algo");
+
+                    // Hashrate
+                    JSONObject hashrateObj = (JSONObject) obj.get("hashrate");
+                    JSONArray hashrateTotalsArr = (JSONArray) hashrateObj.get("total");
+                    Double hashrate = (Double) hashrateTotalsArr.get(0);
+
+                    Log.d(LOG_TAG, "MinerHistoryInserterThread algo: " + algo);
+                    Log.d(LOG_TAG, "MinerHistoryInserterThread hashrate: " + hashrate);
+
+                    if (algo != null && hashrate != null) {
+                        minerHistoryDao.insertMinerHistory(new MinerHistory(
+                                session_id,
+                                algo,
+                                hashrate.floatValue()
+                        ));
+                    }
+
+                    Log.d("XMRigModule", "getMinerHistory.size: " +  minerHistoryDao.getMinerHistory().size());
+                    for (MinerHistoryDao.MinerHistoryBySessionAndAlgo item: minerHistoryDao.getMinerHistoryBySessionAndAlgo()) {
+                        Log.d("XMRigModule", "getMinerHistory.size: " +
+                                item.start_date + " | " +
+                                item.end_date + " | " +
+                                item.algo + " | " +
+                                item.avg_hashrate + " | " +
+                                item.mining_in_minutes);
+
+                    }
+
+                    Thread.sleep(1000 * 60);
+                } catch (ClassCastException | NullPointerException | IOException | InterruptedException | ParseException e) {
+
+                }
+            }
+        }
+
     }
 }
