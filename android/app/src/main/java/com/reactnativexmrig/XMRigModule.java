@@ -101,7 +101,7 @@ public class XMRigModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void totalMiningMinutes(Promise promise) {
-        Log.d("XMRigModule", "totalMiningMinutes="+minerDatabase.minerHistoryDao().getTotalMiningMinutes().get(0).total_mining);
+        //Log.d("XMRigModule", "totalMiningMinutes="+minerDatabase.minerHistoryDao().getTotalMiningMinutes().get(0).total_mining);
         try {
             Float total_mining = minerDatabase.minerHistoryDao().getTotalMiningMinutes().get(0).total_mining;
             promise.resolve(total_mining);
@@ -111,11 +111,13 @@ public class XMRigModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void getMinerHistoryBySessionAndAlgo(Promise promise) {
-        Log.d("XMRigModule", "totalMiningMinutes="+minerDatabase.minerHistoryDao().getMinerHistoryBySessionAndAlgo());
+    public void getMinerHistoryBySessionAndAlgo(int days, Promise promise) {
+        //Log.d("XMRigModule", "totalMiningMinutes="+minerDatabase.minerHistoryDao().getMinerHistoryBySessionAndAlgo(days));
+        String daysStr = String.format("-%d days", days);
+        Log.d("XMRigModule", "daysStr="+daysStr);
         try {
             WritableArray history = new WritableNativeArray();
-            for (MinerHistoryDao.MinerHistoryBySessionAndAlgo item : minerDatabase.minerHistoryDao().getMinerHistoryBySessionAndAlgo()) {
+            for (MinerHistoryDao.MinerHistoryBySessionAndAlgo item : minerDatabase.minerHistoryDao().getMinerHistoryBySessionAndAlgo(daysStr)) {
 
                 WritableMap info = new WritableNativeMap();
                 info.putString("start_date", item.start_date);

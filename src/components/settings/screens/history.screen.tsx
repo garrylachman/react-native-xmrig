@@ -1,6 +1,6 @@
 import React from 'react';
 import { NativeModules, ScrollView, StyleSheet, View } from 'react-native';
-import { Card, Divider, Layout, StyleService, Text, useStyleSheet } from '@ui-kitten/components';
+import { Card, Divider, Layout, StyleService, Text, useStyleSheet, Select, SelectItem, IndexPath  } from '@ui-kitten/components';
 import { ColumnProps, Table } from 'react-native-awesome-table';
 import { CellContentProps } from 'react-native-awesome-table/src/components/Table';
 import { VictoryBar, VictoryChart, VictoryLine, VictoryTheme } from 'victory-native';
@@ -18,7 +18,15 @@ type DataRow = {
 };
 
 const _customCell = ({data, rowIndex, columnIndex}:CellContentProps) => (
-    <Text style={{fontSize: 12, color: 'black'}}>{data}</Text>
+    <Text style={{
+        fontSize: columnIndex == 4 ? 13 : 11,
+        fontWeight:  columnIndex == 4 ? "bold" : "normal",
+        color: 'black', 
+        borderRightWidth: columnIndex == 4 ? 0 : 1, 
+        flex: 1, 
+        textAlignVertical: 'center', 
+        textAlign: 'center'
+    }}>{data}</Text>
 )
 
 const columns:ColumnProps[] = [
@@ -26,26 +34,26 @@ const columns:ColumnProps[] = [
 	{ 'dataKey': 'end_date', title: 'To', flex: 2, getCell: _customCell  },
 	{ 'dataKey': 'mining_in_minutes', title: 'Time', flex: 1, getCell: _customCell  },
 	{ 'dataKey': 'algo', title: 'Algo', flex: 2, getCell: _customCell  },
-    { 'dataKey': 'avg_hashrate', title: 'Hashrate', flex: 1, getCell: _customCell  }
+    { 'dataKey': 'avg_hashrate', title: 'Hashrate', flex: 2, getCell: _customCell  }
 ]
+
+const daysSelect:number[] = [1, 2, 7, 14, 21, 30, 60, 120]
 
 
 const HistoryScreen = () => {
     const [nativeData, setNativeData] = React.useState<DataRow[]>([]);
+    const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(6));
+    const selectedDays = React.useMemo(() => daysSelect[selectedIndex.row], [selectedIndex]);
 
     const styles = useStyleSheet(style);
 
-    React.useEffect(() => {
-        XMRigModule.getMinerHistoryBySessionAndAlgo()
-            .then((res: any) => setNativeData(res))
-            .catch(() => {});
-    }, [])
+    const refresh = () => XMRigModule.getMinerHistoryBySessionAndAlgo(selectedDays)
+        .then((res: any) => setNativeData(res))
+        .catch(() => {});
 
-    useInterval(() => {
-        XMRigModule.getMinerHistoryBySessionAndAlgo()
-            .then((res: any) => setNativeData(res))
-            .catch(() => {});
-    }, 60*1000)
+    React.useEffect(() => refresh(), [])
+    React.useEffect(() => refresh(), [selectedDays])
+    useInterval(() => refresh(), 60*1000)
 
     const data = React.useMemo(() => {
         if (nativeData)   {
@@ -82,25 +90,33 @@ const HistoryScreen = () => {
         <Layout style={styles.layout} level='2'>
             <ScrollView>
                 <View style={styles.cards}>
-                    <Text category="h6">Mining Sessions History</Text>
+                    <Text style={{flex: 2}} category="h6">Mining Sessions History</Text>
+                    <Select
+                        style={{flex: 1}}
+                        selectedIndex={selectedIndex}
+                        value={`${selectedDays} days`}
+                        onSelect={index => setSelectedIndex(index)}>
+                        {daysSelect.map(day => (
+                            <SelectItem title={`${day} days`} />
+                        ))}
+                    </Select>
                 </View>
                 <Text category="h6"> Hashrate / Session</Text>
-                <VictoryChart height={200} theme={VictoryTheme.material} padding={{ top: 10, bottom: 40, left: 40, right: 40 }}>
+                <VictoryChart domainPadding={20} height={200} theme={VictoryTheme.material} padding={{ top: 10, bottom: 40, left: 40, right: 40 }}>
                 <VictoryBar  
                     data={hashrateChart} 
-                    
                     style={{data: { fill: 'rgba(134, 65, 244)'}}}
                     alignment="start"
                 />
                 </VictoryChart>
 
                 <Text category="h6">Minutes Mining / Session</Text>
-                <VictoryChart height={200} theme={VictoryTheme.material} padding={{ top: 10, bottom: 40, left: 40, right: 40 }}>
-                <VictoryLine  
+                <VictoryChart domainPadding={20}  height={200} theme={VictoryTheme.material} padding={{ top: 10, bottom: 40, left: 40, right: 40 }}>
+                <VictoryBar  
                     data={miningTimeChart} 
                     
-                    style={{data: { stroke: 'rgba(134, 65, 244)'}}}
-                    
+                    style={{data: { fill: 'rgba(134, 65, 244)'}}}
+                    alignment="start"
                 />
                 </VictoryChart>
 
@@ -109,12 +125,12 @@ const HistoryScreen = () => {
                     columns={columns}
                     data={data}
                     showHeader={true}
-                    stickyHeader={false}
+                    stickyHeader={true}
                     isLoading={data.length == 0}
                     loadingText="   Waiting for data..."
                     headerRowTextStyle={styles.headerRow}
                     rowStyle={styles.tableRow}
-                    flexAutoAdjustment={false}
+                    flexAutoAdjustment={true}
                 />
             </ScrollView>
         </Layout>
@@ -129,27 +145,28 @@ const style = StyleService.create({
     },
     cards: {
         flex: 1,
-        flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'flex-start',
-        paddingBottom: 10
+        paddingBottom: 10,
+        alignItems: 'center'
     },
     row: {
         flexDirection: 'row',
         marginBottom: 10
     },
     rowCard: {
-        borderRadius: 10
+        borderRadius: 10,
     },
     headerRow: {
-        color: 'text-basic-color'
+        color: 'text-basic-color',
+        fontSize: 9,
+        textAlign: 'center'
     },
     tableRow: {
         backgroundColor: 'color-primary-100',
         borderRadius: 5,
         marginBottom: 5,
-        borderColor: 'color-basic-focus-border',
-        borderWidth: 1,
-        fontSize: 1
+        borderWidth: 0,
     }
 });
 
