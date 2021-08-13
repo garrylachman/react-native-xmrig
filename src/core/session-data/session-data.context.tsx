@@ -4,7 +4,7 @@ import { IMinerBackend, useBackendHttpd } from "../hooks";
 import { useHashrateHistory } from "../hooks";
 import { IMinerLog, StartMode, IXMRigLogEvent } from "./session-data.interface";
 import { IPoolSummary, usePool } from "../hooks";
-import { SettingsActionType, SettingsContext, SettingsStateDispatch } from "../settings";
+import { SettingsContext } from "../settings";
 import { NativeModules, NativeEventEmitter } from "react-native";
 import { parseLogLine } from "../utils/parsers";
 import analytics from '@react-native-firebase/analytics';
@@ -30,7 +30,7 @@ export const SessionDataContext:React.Context<SessionDataContextType> = React.cr
 
 export const SessionDataContextProvider:React.FC = ({children}) =>  {
 
-  const [settings, settingsDispatcher]:SettingsStateDispatch = React.useContext(SettingsContext);
+  const {settings, totalMining} = React.useContext(SettingsContext);
   
   const [minerLog, setMinerLog] = React.useState<IMinerLog[]>([]);
 
@@ -75,9 +75,9 @@ export const SessionDataContextProvider:React.FC = ({children}) =>  {
 
   React.useEffect(() => {
     if (settings.ready) {
-      analytics().setUserProperty("total_mining", `${settings.total_mining}`);
+      analytics().setUserProperty("total_mining", `${totalMining}`);
     }
-  }, [settings.total_mining]);
+  }, [totalMining]);
 
   React.useEffect(() => {
     if (settings.ready) {

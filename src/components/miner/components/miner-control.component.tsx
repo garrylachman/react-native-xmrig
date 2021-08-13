@@ -23,7 +23,7 @@ const AdvancedMode:React.FC<MinerControlProps> = (
 )
 
 const MinerControlFactory:React.FC<MinerControlProps> = (props) => {
-    const [settings] = React.useContext(SettingsContext);
+    const {settings} = React.useContext(SettingsContext);
 
     return (<View style={styles.containerAdvanced}><AdvancedMode {...props} /></View>)
 }

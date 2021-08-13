@@ -3,10 +3,6 @@ export {
     SettingsContext
 } from './settings.context';
 
-export type {
-    SettingsStateDispatch
-} from './settings.context';
-
 export {
     SettingsActionType
 } from './settings.actions';

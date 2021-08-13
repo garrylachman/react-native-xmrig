@@ -23,16 +23,19 @@ const initialState: ISettings = {
     uuid: uuid.v4().toString()
 };
 
-export type SettingsStateDispatch = [state: ISettings, dispatch: Dispatch<ISettingsReducerAction>]
+type SettingsContextProps = {
+  settings: ISettings,
+  totalMining: number,
+  settingsDispatcher: Dispatch<ISettingsReducerAction>,
+}
 
-
-export const SettingsContext:Context<SettingsStateDispatch> = createContext<SettingsStateDispatch>([initialState, () => {}]);
-
+export const SettingsContext:Context<SettingsContextProps> = createContext<SettingsContextProps>({settings: initialState, settingsDispatcher: ():void => {}, totalMining: 0});
 
 export const SettingsContextProvider:React.FC = ({children}) =>  {
-    const [state, dispatch]:SettingsStateDispatch = useReducer(SettingsReducer, initialState);
+    const [settings, settingsDispatcher] = useReducer(SettingsReducer, initialState);
     const [asyncLoaderState, setAsyncLoaderState] = useState<boolean>(false);
     const [nativeTotalMining, setNativeTotalMining] = useState<number>(0);
+    const totalMining = React.useMemo(() => settings.total_mining + nativeTotalMining, [settings.total_mining, nativeTotalMining])
 
     useInterval(() => {
       XMRigModule.totalMiningMinutes()
@@ -44,7 +47,7 @@ export const SettingsContextProvider:React.FC = ({children}) =>  {
       console.log("settings effect - SettingsStorageInit");
       SettingsStorageInit(initialState)
         .then((value:ISettings) => {
-          dispatch({
+          settingsDispatcher({
             type: SettingsActionType.SET,
             value: {
               ...initialState, 
@@ -62,26 +65,26 @@ export const SettingsContextProvider:React.FC = ({children}) =>  {
     }, []);
 
     useEffect(() => {
-      console.log("state changed", state, "asyncLoaderState: ", asyncLoaderState);
+      console.log("state changed", settings, "asyncLoaderState: ", asyncLoaderState);
       if (asyncLoaderState) {
-        SettingsStorageSave(state);
+        SettingsStorageSave(settings);
       }
-    }, [state]);
+    }, [settings]);
 
     useEffect(() => {
-      console.log("total_mining: ", state.total_mining, "nativeTotalMining: " + nativeTotalMining);
+      console.log("total_mining: ", settings.total_mining, "nativeTotalMining: " + nativeTotalMining);
 
-      const newFee = 20 - getCheckpointByMin(state.total_mining + nativeTotalMining);
-      if (state.ready && state.dev_fee != newFee) {
-        dispatch({
+      const newFee = 20 - getCheckpointByMin(totalMining);
+      if (settings.ready && settings.dev_fee != newFee) {
+        settingsDispatcher({
           type: SettingsActionType.SET_DEV_FEE,
           value: newFee
         })
       }
-    }, [state.total_mining, nativeTotalMining])
+    }, [totalMining])
 
     return (
-        <SettingsContext.Provider value={[state, dispatch]}>
+        <SettingsContext.Provider value={{settings, settingsDispatcher, totalMining}}>
           {children}
         </SettingsContext.Provider>
       );

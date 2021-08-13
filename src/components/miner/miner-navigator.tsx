@@ -59,7 +59,7 @@ const AdvancedTabNavigator = () => (
 );
 
 const TabNavigatorFactory = () => {
-  const [settings] = React.useContext(SettingsContext);
+  const {settings} = React.useContext(SettingsContext);
 
   return <AdvancedTabNavigator />;
 }

@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native';
 import * as eva from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider,  IconRegistry } from '@ui-kitten/components';
-import { SettingsContextProvider, SettingsContext, SettingsStateDispatch, ThemeType } from './core/settings'
+import { SettingsContextProvider, SettingsContext, ThemeType } from './core/settings'
 import { DialogContextProvider } from './components/dialogs/dialog.provider';
 import { AppNavigator, AppHeader } from './components';
 import { SessionDataContextProvider } from './core/session-data/session-data.context';
@@ -24,7 +24,7 @@ const AppWithSettings:React.FC = () => (
 );
 
 const App = () => {
-  const [settings, settingsDispatcher]:SettingsStateDispatch = React.useContext(SettingsContext);
+  const {settings} = React.useContext(SettingsContext);
   const theme = React.useMemo(() => settings.theme ? eva[settings.theme as ThemeType] : eva.dark, [settings.theme]);
 
   return (

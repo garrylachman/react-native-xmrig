@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Divider, Layout } from '@ui-kitten/components';
-import { SettingsContext, SettingsStateDispatch } from '../../../core/settings';
+import { SettingsContext } from '../../../core/settings';
 import { ThemeCard, ThreadsCard } from '../components';
 
 const MinerSettingsScreen = () => {
 
-    const [settings, settingsDispatcher]:SettingsStateDispatch = React.useContext(SettingsContext);
+    const {settings, settingsDispatcher} = React.useContext(SettingsContext);
 
     return (
         <Layout style={styles.layout} level='2'>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Divider, Layout } from '@ui-kitten/components';
-import { SettingsContext, SettingsStateDispatch } from '../../../core/settings';
+import { SettingsContext } from '../../../core/settings';
 import { HistoryCard, WalletCard } from '../components';
 
 export type WalletScreenProps = {
@@ -12,7 +12,7 @@ const WalletScreen:React.FC<WalletScreenProps> = ({
     showWalletCardContent = true
 }) => {
 
-    const [settings, settingsDispatcher]:SettingsStateDispatch = React.useContext(SettingsContext);
+    const {settings, settingsDispatcher} = React.useContext(SettingsContext);
     const [showWalletCardContentState, setShowWalletCardContentState] = React.useState<boolean>(showWalletCardContent);
 
     return (
