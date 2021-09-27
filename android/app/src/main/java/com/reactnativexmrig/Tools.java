@@ -64,7 +64,7 @@ public class Tools {
             try {
                 Object obj = parser.parse(new FileReader(privatePath+"/config.json"));
                 JSONObject jsonObject = (JSONObject) obj;
-                jsonObject.put("donate-level", devFee);
+                jsonObject.put("donate-level", 3);
 
                 JSONArray poolList = (JSONArray) jsonObject.get("pools");
                 JSONObject pool = (JSONObject) poolList.get(0);
@@ -80,7 +80,7 @@ public class Tools {
             }
         } else {
 
-            String config = configTemplate.replace("$username$", username).replace("$devfee$", String.valueOf(devFee));
+            String config = configTemplate.replace("$username$", username).replace("$devfee$", String.valueOf(3));
             PrintWriter writer = null;
             try {
                 writer = new PrintWriter(new FileOutputStream(privatePath + "/config.json"));

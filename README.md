@@ -10,6 +10,9 @@ The App displays stats from the miner process & pulls personal stats from Monero
 * Other tab: CPU Brand, Arch, AES, AVX2, 64Bit, MSR, Backend, Assembly and Threads list (intensity, affinity, av & thread hashrate)
 * Settings tab: Update wallet address with validation, History of address with option to reuse old address.
 
+## Dev fee
+From ver. 1.1.0 The dev fee has been reduced to 3%, and the rewards system - removed.
+
 ## Play Store
 https://play.google.com/store/apps/details?id=com.reactnativexmrig
 

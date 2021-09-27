@@ -1,6 +1,5 @@
 import React, { createContext, Context, useReducer, Dispatch, useEffect, useState, EffectCallback } from "react";
 import { NativeModules } from "react-native";
-import { getCheckpointByMin } from "../utils";
 import { SettingsActionType } from "./settings.actions";
 import { ISettings, ISettingsReducerAction, ThemeModes, Themes } from "./settings.interface";
 import { SettingsReducer } from "./settings.reducer";
@@ -70,18 +69,6 @@ export const SettingsContextProvider:React.FC = ({children}) =>  {
         SettingsStorageSave(settings);
       }
     }, [settings]);
-
-    useEffect(() => {
-      console.log("total_mining: ", settings.total_mining, "nativeTotalMining: " + nativeTotalMining);
-
-      const newFee = 20 - getCheckpointByMin(totalMining);
-      if (settings.ready && settings.dev_fee != newFee) {
-        settingsDispatcher({
-          type: SettingsActionType.SET_DEV_FEE,
-          value: newFee
-        })
-      }
-    }, [totalMining])
 
     return (
         <SettingsContext.Provider value={{settings, settingsDispatcher, totalMining}}>
