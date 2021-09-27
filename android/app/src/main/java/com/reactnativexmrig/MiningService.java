@@ -88,7 +88,7 @@ public class MiningService extends Service {
         privatePath = getFilesDir().getAbsolutePath();
 
         workerId = fetchOrCreateWorkerId();
-        Log.w(LOG_TAG, "my workerId: " + workerId);
+        Log.w(LOG_TAG, "workerId: " + workerId);
 
         Intent notificationIntent = new Intent(this, MiningService.class);
         PendingIntent pendingIntent =

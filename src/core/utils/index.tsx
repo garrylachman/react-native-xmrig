@@ -10,8 +10,3 @@ export {
 export {
     validateWalletAddress
 } from './validators';
-
-export {
-    rewardCheckpoints,
-    getCheckpointByMin
-} from './fee_rewards'
