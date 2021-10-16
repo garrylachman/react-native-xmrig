@@ -20,6 +20,7 @@ export interface IPoolSummary {
     totalHashes: number;
     validShares: number;
     invalidShares: number;
+    validSharesPercentage: number;
     amtPaid: number;
     amtDue: number;
     txnCount: number;
@@ -49,7 +50,8 @@ export const usePool = (wallet?:string) => {
                             setData({
                                 ...value,
                                 amtPaid: parseFloat((value.amtPaid/1e12).toFixed(3)),
-                                amtDue: parseFloat((value.amtDue/1e12).toFixed(3))
+                                amtDue: parseFloat((value.amtDue/1e12).toFixed(3)),
+                                validSharesPercentage: parseFloat((((value.validShares-value.invalidShares)/value.validShares)*100).toFixed(1))
                             })
                         } else {
                         }

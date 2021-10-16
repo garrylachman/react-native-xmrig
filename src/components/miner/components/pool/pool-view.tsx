@@ -42,6 +42,20 @@ export const PoolView = (props: PoolViewProps):React.ReactElement<PoolViewProps>
                     <Text category='label'>Shares</Text>
                     <Text adjustsFontSizeToFit numberOfLines={1}>{props.poolData?.validShares}</Text>
                 </Card>
+                <Card style={[styles.rowCard, {flex: 1, marginRight: 10}]}>
+                    <Text category='label'>Invalid</Text>
+                    <Text adjustsFontSizeToFit numberOfLines={1}>{props.poolData?.invalidShares}</Text>
+                </Card>
+                <Card style={[styles.rowCard, {flex: 1}]}>
+                <Text category='label'>Shares Rate</Text>
+                    <Text adjustsFontSizeToFit numberOfLines={1} category='h4'>{props.poolData?.validSharesPercentage}%</Text>
+                </Card>
+            </View>
+            <View style={styles.row}>
+                <Card style={[styles.rowCard, {flex: 1, marginRight: 10}]}>
+                    <Text category='label'>Last Hash</Text>
+                    <Text adjustsFontSizeToFit numberOfLines={1}>{formatHashrate(props.poolData?.lastHash)[0]} <Text category='s2'>{formatHashrate(props.poolData?.lastHash)[1]}</Text></Text>
+                </Card>
                 <Card style={[styles.rowCard, {flex: 1}]}>
                     <Text category='label'>Total Hashes</Text>
                     <Text adjustsFontSizeToFit numberOfLines={1}>{formatHashrate(props.poolData?.totalHashes)[0]} <Text category='s2'>{formatHashrate(props.poolData?.totalHashes)[1]}</Text></Text>
