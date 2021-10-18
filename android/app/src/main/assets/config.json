@@ -17,7 +17,7 @@
   "randomx": {
     "init": -1,
     "init-avx2": 0,
-    "mode": "light",
+    "mode": "auto",
     "1gb-pages": false,
     "rdmsr": true,
     "wrmsr": true,
@@ -27,7 +27,7 @@
   },
   "cpu": {
     "enabled": true,
-    "huge-pages": false,
+    "huge-pages": true,
     "huge-pages-jit": false,
     "hw-aes": null,
     "priority": null,
@@ -37,11 +37,6 @@
     "asm": true,
     "argon2-impl": null,
     "astrobwt-max-size": 100,
-    "*": {
-      "intensity": 1,
-      "threads": 2,
-      "affinity": -1
-    },
     "astrobwt-avx2": false,
     "cn/0": false,
     "cn-lite/0": false,
@@ -49,8 +44,7 @@
     "cn/gpu": false,
     "cn/ccx": false,
     "argon2/chukwav2": false,
-    "astrobwt": false,
-    "panthera": false
+    "cn-heavy/xhv": false
   },
   "opencl": {
     "enabled": false,
@@ -71,7 +65,7 @@
     "panthera": false,
     "astrobwt": false
   },
-  "donate-level": $devfee$,
+  "donate-level": 1,
   "donate-over-proxy": 1,
   "log-file": null,
   "pools": [
@@ -93,8 +87,8 @@
       "submit-to-origin": false
     }
   ],
-  "print-time": 30,
-  "health-print-time": 30,
+  "print-time": 60,
+  "health-print-time": 60,
   "dmi": true,
   "retries": 5,
   "retry-pause": 5,

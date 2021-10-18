@@ -118,6 +118,7 @@ android/libuv/build
 android/build
 .DS_Store
 android/libuv/libuv-1.23.1/build
+android/libuv/libuv-1.42.0/build
 java_pid65262.hprof
 app-release.aab
 android/app/google-services.json
@@ -147,3 +148,4 @@ assets/screenshots/tablet/Screenshot_1625523981.png
 assets/screenshots/tablet/Screenshot_1625523989.png
 assets/screenshots/tablet/Screenshot_1625523999.png
 assets/screenshots/threads.jpeg
+android/libuv/libuv-1.42.0/my-toolchain

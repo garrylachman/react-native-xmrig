@@ -80,11 +80,11 @@ apply plugin: 'com.google.gms.google-services'
  */
 
 task buildDeps(type: Exec){
-    commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
+    commandLine 'bash', '../libuv/libuv-1.42.0/BASHCOMPILE.sh'
 }
 
 task copyDeps(type: Exec, dependsOn: 'buildDeps'){
-    commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
+    commandLine 'bash', '../libuv/libuv-1.42.0/COPY.sh'
 }
 
 task copyXMRig(type: Exec, dependsOn: 'externalNativeBuildRelease'){
@@ -168,8 +168,8 @@ android {
         applicationId "com.reactnativexmrig"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 26
-        versionName "1.1.0"
+        versionCode 27
+        versionName "1.2.0"
         externalNativeBuild {
             cmake {
                 arguments "-DUV_INCLUDE_DIR=app/src/cpp/include"
@@ -195,7 +195,11 @@ android {
             keyPassword 'android'
         }
 	release {
-	   if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+	   storeFile file('debug.keystore')
+        storePassword 'android'
+        keyAlias 'androiddebugkey'
+        keyPassword 'android'
+        if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
                 storeFile file(MYAPP_UPLOAD_STORE_FILE)
                 storePassword MYAPP_UPLOAD_STORE_PASSWORD
                 keyAlias MYAPP_UPLOAD_KEY_ALIAS

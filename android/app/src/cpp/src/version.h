@@ -1,12 +1,6 @@
 /* XMRig
- * Copyright 2010      Jeff Garzik <jgarzik@pobox.com>
- * Copyright 2012-2014 pooler      <pooler@litecoinpool.org>
- * Copyright 2014      Lucas Jones <https://github.com/lucasjones>
- * Copyright 2014-2016 Wolf9466    <https://github.com/OhGodAPet>
- * Copyright 2016      Jay D Dee   <jayddee246@gmail.com>
- * Copyright 2017-2018 XMR-Stak    <https://github.com/fireice-uk>, <https://github.com/psychocrypt>
- * Copyright 2018-2021 SChernykh   <https://github.com/SChernykh>
- * Copyright 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
+ * Copyright (c) 2018-2021 SChernykh   <https://github.com/SChernykh>
+ * Copyright (c) 2016-2021 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,17 +19,17 @@
 #ifndef XMRIG_VERSION_H
 #define XMRIG_VERSION_H
 
-#define APP_ID        "react-native-xmr"
-#define APP_NAME      "ReactNativeXMR"
-#define APP_DESC      "ReactNativeXMR Service"
-#define APP_VERSION   "6.12.2-mo2"
-#define APP_DOMAIN    ""
-#define APP_SITE      ""
-#define APP_COPYRIGHT ""
-#define APP_KIND      "service"
+#define APP_ID        "ReactNativeXMRIG"
+#define APP_NAME      "ReactNativeXMRIG"
+#define APP_DESC      "React Native XMRIG"
+#define APP_VERSION   "6.15.2-mo1"
+#define APP_DOMAIN    "xmrig.com"
+#define APP_SITE      "www.xmrig.com"
+#define APP_COPYRIGHT "Copyright (C) 2016-2021 xmrig.com"
+#define APP_KIND      "miner"
 
 #define APP_VER_MAJOR  6
-#define APP_VER_MINOR  12
+#define APP_VER_MINOR  15
 #define APP_VER_PATCH  2
 
 #ifdef _MSC_VER

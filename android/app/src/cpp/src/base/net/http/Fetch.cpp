@@ -106,7 +106,7 @@ void xmrig::fetch(const char *tag, FetchRequest &&req, const std::weak_ptr<IHttp
     }
 #   endif
 
-    HttpClient *client;
+    HttpClient *client = nullptr;
 #   ifdef XMRIG_FEATURE_TLS
     if (req.tls) {
         client = new HttpsClient(tag, std::move(req), listener);

@@ -196,7 +196,7 @@ xmrig::BasicCpuInfo::BasicCpuInfo() :
     }
 
 #   ifdef XMRIG_FEATURE_ASM
-    if (hasAES()) {
+    if (m_flags.test(FLAG_AES)) {
         char vendor[13] = { 0 };
         int32_t data[4] = { 0 };
 
@@ -312,7 +312,7 @@ xmrig::CpuThreads xmrig::BasicCpuInfo::threads(const Algorithm &algorithm, uint3
         return 1;
     }
 
-    Algorithm::Family f = algorithm.family();
+    const auto f = algorithm.family();
 
 #   ifdef XMRIG_ALGO_CN_LITE
     if (f == Algorithm::CN_LITE) {

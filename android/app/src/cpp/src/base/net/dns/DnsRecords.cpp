@@ -36,11 +36,11 @@ const xmrig::DnsRecord &xmrig::DnsRecords::get(DnsRecord::Type prefered) const
     const size_t ipv6 = m_ipv6.size();
 
     if (ipv6 && (prefered == DnsRecord::AAAA || Dns::config().isIPv6() || !ipv4)) {
-        return m_ipv6[ipv6 == 1 ? 0 : static_cast<size_t>(rand()) % ipv6];
+        return m_ipv6[ipv6 == 1 ? 0 : static_cast<size_t>(rand()) % ipv6]; // NOLINT(concurrency-mt-unsafe, cert-msc30-c, cert-msc50-cpp)
     }
 
     if (ipv4) {
-        return m_ipv4[ipv4 == 1 ? 0 : static_cast<size_t>(rand()) % ipv4];
+        return m_ipv4[ipv4 == 1 ? 0 : static_cast<size_t>(rand()) % ipv4]; // NOLINT(concurrency-mt-unsafe, cert-msc30-c, cert-msc50-cpp)
     }
 
     return defaultRecord;

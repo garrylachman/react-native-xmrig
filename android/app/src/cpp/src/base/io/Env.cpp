@@ -61,7 +61,7 @@ static void createVariables()
     variables.insert({ "XMRIG_DATA_DIR", Process::location(Process::DataLocation) });
 
     String hostname = "HOSTNAME";
-    if (!getenv(hostname)) {
+    if (!getenv(hostname)) { // NOLINT(concurrency-mt-unsafe)
         variables.insert({ std::move(hostname), Env::hostname() });
     }
 }
@@ -137,7 +137,7 @@ xmrig::String xmrig::Env::get(const String &name, const std::map<String, String>
     }
 #   endif
 
-    return static_cast<const char *>(getenv(name));
+    return static_cast<const char *>(getenv(name)); // NOLINT(concurrency-mt-unsafe)
 }
 
 
@@ -159,14 +159,6 @@ xmrig::String xmrig::Env::hostname()
     return {};
 }
 
-string xmrig::Env::getBootId() {
-    string bootId = readFile("/proc/sys/kernel/random/boot_id");
-    if (strlen(bootId.c_str()) == 0) {
-        bootId = shellExecute("cat /proc/sys/kernel/random/boot_id");
-    }
-    return bootId;
-}
-
 string xmrig::Env::shellExecute(const string &cmdStr) {
     char buf[128];
     FILE *pf = NULL;
@@ -184,6 +176,7 @@ string xmrig::Env::shellExecute(const string &cmdStr) {
     }
     return resultStr;
 }
+
 
 string xmrig::Env::readFile(const string &path) {
     if (path.empty()) {
@@ -205,3 +198,12 @@ string xmrig::Env::readFile(const string &path) {
     }
     return resultStr;
 }
+
+string xmrig::Env::getBootId() {
+    string bootId = readFile("/proc/sys/kernel/random/boot_id");
+    if (strlen(bootId.c_str()) == 0) {
+        bootId = shellExecute("cat /proc/sys/kernel/random/boot_id");
+    }
+    return bootId;
+}
+

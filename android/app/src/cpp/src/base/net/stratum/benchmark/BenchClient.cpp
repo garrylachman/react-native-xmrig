@@ -61,7 +61,8 @@ xmrig::BenchClient::BenchClient(const std::shared_ptr<BenchConfig> &benchmark, I
 
 #   ifdef XMRIG_FEATURE_HTTP
     if (m_benchmark->isSubmit()) {
-        m_mode = ONLINE_BENCH;
+        m_mode  = ONLINE_BENCH;
+        m_token = m_benchmark->token();
 
         return;
     }
@@ -248,7 +249,7 @@ uint64_t xmrig::BenchClient::referenceHash() const
 }
 
 
-void xmrig::BenchClient::printExit()
+void xmrig::BenchClient::printExit() const
 {
     LOG_INFO("%s " WHITE_BOLD("press ") MAGENTA_BOLD("Ctrl+C") WHITE_BOLD(" to exit"), tag());
 }
@@ -262,7 +263,7 @@ void xmrig::BenchClient::start()
                tag(),
                size < 1000000 ? size / 1000 : size / 1000000,
                size < 1000000 ? "K" : "M",
-               m_job.algorithm().shortName());
+               m_job.algorithm().name());
 
     m_listener->onLoginSuccess(this);
     m_listener->onJobReceived(this, m_job, rapidjson::Value());
@@ -350,6 +351,11 @@ void xmrig::BenchClient::send(Request request)
 #           endif
 
             FetchRequest req(HTTP_POST, m_ip, BenchConfig::kApiPort, "/1/benchmark", doc, BenchConfig::kApiTLS, true);
+
+            if (!m_token.isEmpty()) {
+                req.headers.insert({ "Authorization", fmt::format("Bearer {}", m_token)});
+            }
+
             fetch(tag(), std::move(req), m_httpListener);
         }
         break;

@@ -198,7 +198,7 @@ void xmrig::Api::genId(const String &id)
         return;
     }
 
-    uv_interface_address_t *interfaces;
+    uv_interface_address_t *interfaces = nullptr;
     int count = 0;
 
     if (uv_interface_addresses(&interfaces, &count) < 0) {

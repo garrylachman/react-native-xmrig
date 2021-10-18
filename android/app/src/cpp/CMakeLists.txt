@@ -3,14 +3,14 @@ project(xmrig)
 
 option(WITH_HWLOC           "Enable hwloc support" OFF)
 option(WITH_CN_LITE         "Enable CryptoNight-Lite algorithms family" ON)
-option(WITH_CN_HEAVY        "Enable CryptoNight-Heavy algorithms family" OFF)
+option(WITH_CN_HEAVY        "Enable CryptoNight-Heavy algorithms family" ON)
 option(WITH_CN_PICO         "Enable CryptoNight-Pico algorithm" ON)
-option(WITH_CN_GPU          "Enable CryptoNight-GPU algorithm" OFF)
+option(WITH_CN_GPU          "Enable CryptoNight-GPU algorithm" ON)
 option(WITH_CN_FEMTO        "Enable CryptoNight-UPX2 algorithm" ON)
 option(WITH_RANDOMX         "Enable RandomX algorithms family" ON)
 option(WITH_ARGON2          "Enable Argon2 algorithms family" ON)
-option(WITH_ASTROBWT        "Enable AstroBWT algorithms family" OFF)
-option(WITH_KAWPOW          "Enable KawPow algorithms family" OFF)
+option(WITH_ASTROBWT        "Enable AstroBWT algorithms family" ON)
+option(WITH_KAWPOW          "Enable KawPow algorithms family" ON)
 option(WITH_HTTP            "Enable HTTP protocol support (client/server)" ON)
 option(WITH_DEBUG_LOG       "Enable debug log output" OFF)
 option(WITH_TLS             "Enable OpenSSL support" OFF)
@@ -28,12 +28,13 @@ option(WITH_MO_BENCHMARK    "Enable Benchmark module and algo-perf feature (for 
 option(WITH_PROFILING       "Enable profiling for developers" OFF)
 option(WITH_SSE4_1          "Enable SSE 4.1 for Blake2" ON)
 option(WITH_BENCHMARK       "Enable builtin RandomX benchmark and stress test" ON)
-option(WITH_SECURE_JIT      "Enable secure access to JIT memory" OFF)
+option(WITH_SECURE_JIT      "Enable secure access to JIT memory" ON)
 option(WITH_DMI             "Enable DMI/SMBIOS reader" ON)
 
 option(BUILD_STATIC         "Build static binary" OFF)
 option(ARM_TARGET           "Force use specific ARM target 8 or 7" 0)
 option(HWLOC_DEBUG          "Enable hwloc debug helpers and log" OFF)
+
 
 if (ANDROID_ABI MATCHES "^(arm64-v8a)$")
     set(ARM_TARGET 8)
@@ -42,7 +43,7 @@ elseif (ANDROID_ABI MATCHES "^(armeabi-v7a)$")
 endif()
 
 set(UV_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/src/libs/${ANDROID_ABI}/libuv.a)
-set(UV_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
+set(UV_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../libuv-1.42.0/include)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
@@ -66,6 +67,7 @@ set(HEADERS
     src/core/config/usage.h
     src/core/Controller.h
     src/core/Miner.h
+    src/core/Taskbar.h
     src/net/interfaces/IJobResultListener.h
     src/net/JobResult.h
     src/net/JobResults.h
@@ -114,6 +116,7 @@ set(SOURCES
     src/core/config/ConfigTransform.cpp
     src/core/Controller.cpp
     src/core/Miner.cpp
+    src/core/Taskbar.cpp
     src/net/JobResults.cpp
     src/net/Network.cpp
     src/net/strategies/DonateStrategy.cpp
@@ -234,7 +237,7 @@ if (WITH_DEBUG_LOG)
     add_definitions(/DAPP_DEBUG)
 endif()
 
-add_executable(${CMAKE_PROJECT_NAME} ${HEADERS} ${SOURCES} ${SOURCES_OS} ${HEADERS_CRYPTO} ${SOURCES_CRYPTO} ${SOURCES_SYSLOG} ${TLS_SOURCES} ${XMRIG_ASM_SOURCES} ${CN_GPU_SOURCES})
+add_executable(${CMAKE_PROJECT_NAME} ${HEADERS} ${SOURCES} ${SOURCES_OS} ${HEADERS_CRYPTO} ${SOURCES_CRYPTO} ${SOURCES_SYSLOG} ${TLS_SOURCES} ${XMRIG_ASM_SOURCES})
 target_link_libraries(${CMAKE_PROJECT_NAME} ${XMRIG_ASM_LIBRARY} ${OPENSSL_LIBRARIES} ${UV_LIBRARIES} ${EXTRA_LIBS} ${CPUID_LIB} ${ARGON2_LIBRARY} ${ETHASH_LIBRARY})
 
 if (WIN32)

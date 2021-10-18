@@ -18,6 +18,7 @@
 #pragma once
 
 #include <set>
+#include <map>
 #include "net/interfaces/IJobResultListener.h"
 #include "base/crypto/Algorithm.h"
 #include "rapidjson/fwd.h"
@@ -38,14 +39,14 @@ class MoBenchmark : public IJobResultListener {
             CN_HEAVY_XHV,  // "cn-heavy/xhv"     CryptoNight-Heavy (modified, Haven Protocol only).
             CN_PICO_0,     // "cn-pico"          CryptoNight-Pico.
             CN_CCX,        // "cn/ccx"           Conceal (CCX).
-            //CN_GPU,        // "cn/gpu"           CryptoNight-GPU (Ryo).
+            CN_GPU,        // "cn/gpu"           CryptoNight-GPU (Ryo).
             AR2_CHUKWA_V2, // "argon2/chukwav2"  Argon2id (Chukwa v2).
-            //KAWPOW_RVN,    // "kawpow/rvn"       KawPow (RVN)
-            //ASTROBWT_DERO, // "astrobwt"         AstroBWT (Dero).
+            KAWPOW_RVN,    // "kawpow/rvn"       KawPow (RVN)
+            ASTROBWT_DERO, // "astrobwt"         AstroBWT (Dero).
             RX_0,          // "rx/0"             RandomX (Monero).
-            RX_WOW,        // "rx/wow"           RandomWOW (Wownero).
-            //RX_ARQ,        // "rx/arq"           RandomARQ (Arqma).
-            //RX_XLA,        // "panthera"         Panthera (Scala2).
+            RX_GRAFT,      // "rx/graft"         RandomGraft (Graft).
+            RX_ARQ,        // "rx/arq"           RandomARQ (Arqma).
+            RX_XLA,        // "panthera"         Panthera (Scala2).
             MAX,
             MIN = 0,
             INVALID = -1,
@@ -57,14 +58,14 @@ class MoBenchmark : public IJobResultListener {
             Algorithm::CN_HEAVY_XHV,
             Algorithm::CN_PICO_0,
             Algorithm::CN_CCX,
-            //Algorithm::CN_GPU,
+            Algorithm::CN_GPU,
             Algorithm::AR2_CHUKWA_V2,
-            //Algorithm::KAWPOW_RVN,
-            //Algorithm::ASTROBWT_DERO,
+            Algorithm::KAWPOW_RVN,
+            Algorithm::ASTROBWT_DERO,
             Algorithm::RX_0,
-            Algorithm::RX_WOW,
-            //Algorithm::RX_ARQ,
-            //Algorithm::RX_XLA,
+            Algorithm::RX_GRAFT,
+            Algorithm::RX_ARQ,
+            Algorithm::RX_XLA,
         };
 
         Job* m_bench_job[BenchAlgo::MAX];
@@ -95,7 +96,7 @@ class MoBenchmark : public IJobResultListener {
         void start(); // start benchmarks
 
         bool isNewBenchRun() const { return m_isNewBenchRun; }
-        double algo_perf[Algorithm::MAX];
+        mutable std::map<Algorithm::Id, double> algo_perf;
 
         rapidjson::Value toJSON(rapidjson::Document &doc) const;
         void read(const rapidjson::Value &value);

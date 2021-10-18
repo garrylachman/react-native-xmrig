@@ -61,7 +61,7 @@ bool xmrig::HttpsContext::write(BIO *bio)
     }
 
     char *data        = nullptr;
-    const size_t size = BIO_get_mem_data(bio, &data);
+    const size_t size = BIO_get_mem_data(bio, &data); // NOLINT(cppcoreguidelines-pro-type-cstyle-cast)
     std::string body(data, size);
 
     (void) BIO_reset(bio);

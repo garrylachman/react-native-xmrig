@@ -221,8 +221,8 @@ public class MiningService extends Service {
             // run xmrig using the config
             String[] args = {
                     "./"+SoLoader.getLibraryPath("libxmrig.so"),
-                    "-c", getApplicationContext().getFilesDir().getAbsolutePath() + "/config.json",
-                    "-t", String.valueOf(threads)};
+                    "-c", getApplicationContext().getFilesDir().getAbsolutePath() + "/config.json" /*,
+                    "-t", String.valueOf(threads)(*/};
             ProcessBuilder pb = new ProcessBuilder(args);
             // in our directory
             //pb.directory(new File(getApplicationContext().getFilesDir().getAbsolutePath()+"/../lib/"));
